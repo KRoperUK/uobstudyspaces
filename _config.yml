@@ -13,16 +13,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-node-module
 
-node-modules:
-  modules_dir: node_modules
-  assets:
-    js: assets/scripts
-    css: assets/styles
-    map: assets/scripts
-  copy:
-    - source: node_modules/leaflet/dist/
-      destination: assets/js
-
 
 # Optimize Jekyll
 exclude:

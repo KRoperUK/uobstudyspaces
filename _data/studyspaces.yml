@@ -5,11 +5,16 @@
     cafe: true
     spaces: 2000
     computers: true
+    vending_machines: true
+    opening_hours: "Mo-Su 00:00-24:00;"
+    quiet: true
+    group: true
   - name: "Law Study Space - Harding Building"
     coordinates: [52.45006501198604, -1.930515147314549]
     spaces: 60
     cafe: false
     computers: true
+    opening_hours: "Mo-Fr 08:00-19:00;"
   - name: "Guild of Students"
     coordinates: [52.44912859757744, -1.926971916421489]
     spaces: 30
@@ -19,7 +24,9 @@
     coordinates: [52.450129553930445, -1.9358595683889959]
     spaces: 20
     cafe: false
+    vending_machines: true
     computers: true
+    customicon: "otherStudy"
   - name: "Murray Learning Centre"
     coordinates: [52.45068567347343, -1.9356770692989167]
     spaces: 434
@@ -30,11 +37,14 @@
     coordinates: [52.4495578201483, -1.9288785069136332]
     spaces: 83
     cafe: false
+    vending_machines: true
     computers: true
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
   - name: "Teaching and Learning Building"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/teaching-learning-building/index.aspx"
     spaces: 515
+    cafe: true
+    vending_machines: true
     coordinates: [52.45228829046721, -1.9311276856782928]
   - name: "Old Gym"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
@@ -57,6 +67,10 @@
     spaces: 30
     computers: false
     customicon: "heybrew"
+  - name: "Mason Laundry"
+    coordinates: [52.45893079221071, -1.9263403513167143]
+    opening_hours: "Mo-Su 00:00-24:00;"
+    notes: "Open to students living in Mason only"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"

@@ -3,6 +3,8 @@ layout: default
 title: Home
 ---
 
+<!-- https://projets.pavie.info/yohours/ -->
+
 <div id="map" style="height: 35rem;">
   
 </div>
@@ -39,6 +41,13 @@ title: Home
     popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
   });
 
+  customIcons["otherStudy"] = L.icon ({
+    iconUrl: '/assets/book.svg',
+    iconSize:     [32, 32], // size of the icon
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
+  });
+
   var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
   
   tileLayers.push(OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -62,24 +71,96 @@ title: Home
 
   var studySpaces = L.layerGroup();
 
-  console.log(spaces);
-
   for (let campus in spaces) {
     for (let building of spaces[campus]) {
 
         var marker = L.marker(building.coordinates,
-          {icon: building.customicon ? customIcons[building.customicon] : studySpaceIcon}
+          {icon: building.customicon ? customIcons[building.customicon] : (campus == "Other" ? customIcons["otherStudy"] : studySpaceIcon)}
         );
-        marker.bindPopup(`<h3 style="margin-top: 0;margin-botton: 2px; color: black;"><small>` +
-          (building.url ? `<a style="text-decoration: none;" href="${building.url}">` : ``)
-            + building.name +
-          (building.url ? `</a>` : ``) +
-          `</small></h3>
-        <ul>
-          <li><a style="text-decoration: none;" href="https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking"> Directions </a></li>`
-          + (building.spaces ? `<li>Spaces: ${building.spaces}</li>` : ``) +
-        `</ul>`);
 
+        markerPopup = L.DomUtil.create('div');
+
+        markerHeading = L.DomUtil.create('h3');
+        markerHeading.style.marginTop = 0;
+        markerHeading.style.marginBottom = "2px";
+        markerHeading.style.color = "black";
+
+        
+        markerHeadingText = L.DomUtil.create('small');
+        if (building.url) {
+          markerHeadingText.innerHTML = `<a style="text-decoration: none;" href="${building.url}">` + building.name + `</a>`;
+        } else {
+          markerHeadingText.innerHTML = building.name;
+        }
+        markerHeading.appendChild(markerHeadingText);
+
+        markerPopup.appendChild(markerHeading);
+
+        markerList = L.DomUtil.create('ul');
+        markerList.style.marginTop = 0;
+        markerList.style.marginBottom = 0;
+
+        markerListDirections = L.DomUtil.create('li');
+        markerListDirectionsText = L.DomUtil.create('a');
+        markerListDirectionsText.style.textDecoration = "none";
+        markerListDirectionsText.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
+        markerListDirectionsText.innerHTML = "Directions";
+        markerListDirections.appendChild(markerListDirectionsText);
+
+        markerList.appendChild(markerListDirections);
+
+        if (building.opening_hours) {
+          markerListOpeningHours = L.DomUtil.create('li');
+          markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
+          markerList.appendChild(markerListOpeningHours);
+        }
+
+        if (building.notes) {
+          markerListNotes = L.DomUtil.create('li');
+          markerListNotes.innerHTML = building.notes;
+          markerList.appendChild(markerListNotes);
+        }
+
+        if (building.spaces) {
+          markerListSpaces = L.DomUtil.create('li');
+          markerListSpaces.innerHTML = `Spaces: ${building.spaces}`;
+          markerList.appendChild(markerListSpaces);
+        }
+
+        if (building.cafe) {
+          markerListCafe = L.DomUtil.create('li');
+          markerListCafe.innerHTML = `Has cafe`;
+          markerList.appendChild(markerListCafe);
+        }
+
+        if (building.vending_machines) {
+          markerListVending = L.DomUtil.create('li');
+          markerListVending.innerHTML = `Has vending machines`;
+          markerList.appendChild(markerListVending);
+        }
+
+        if (building.computers) {
+          markerListComputers = L.DomUtil.create('li');
+          markerListComputers.innerHTML = `Has computers`;
+          markerList.appendChild(markerListComputers);
+        }
+
+        if (building.quiet) {
+          markerListQuiet = L.DomUtil.create('li');
+          markerListQuiet.innerHTML = `Has quiet study`;
+          markerList.appendChild(markerListQuiet);
+        }
+
+        if (building.group) {
+          markerListGroup = L.DomUtil.create('li');
+          markerListGroup.innerHTML = `Has group study`;
+          markerList.appendChild(markerListGroup);
+        }
+
+        markerPopup.appendChild(markerList);
+
+
+        marker.bindPopup(markerPopup);
         marker.addTo(studySpaces);
     }
   }
@@ -130,33 +211,3 @@ title: Home
   L.control.layerswap({ position: 'topright' }).addTo(map);
   
 </script>
-
-
-<!-- <div class="posts">
-  {% for post in paginator.posts %}
-  <article class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
-
-    {{ post.content }}
-  </article>
-  {% endfor %}
-</div> -->
-
-<!-- <div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: relative_url }}">Newer</a>
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div> -->
