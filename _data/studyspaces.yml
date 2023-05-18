@@ -1,0 +1,12 @@
+edgbaston:
+  - name: "Library"
+    coordinates: [52.45153143506902, -1.9314190137365919]
+    url: "https://intranet.birmingham.ac.uk/as/libraryservices/library/index.aspx"
+    cafe: true
+    spaces: 2000
+    computers: true
+  - name: "Law Study Space - Harding Building"
+    coordinates: [52.45006501198604, -1.930515147314549]
+    spaces: 60
+    cafe: false
+    computers: true
