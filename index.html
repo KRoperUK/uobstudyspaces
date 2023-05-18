@@ -88,6 +88,9 @@ title: Home
     tileLayersIndex = (tileLayersIndex + 1) % tileLayers.length;
     tileLayers[tileLayersIndex].addTo(map);
   }
+  function handleTimingChange() {
+    console.log("Timing change feature coming soon!");
+  }
 
   studySpaces.addTo(map);
 
@@ -99,8 +102,12 @@ title: Home
     onAdd: function(map) {
         var visitedD = L.DomUtil.create('div');
         var layerA = L.DomUtil.create('a');
+        var timingA = L.DomUtil.create('a');
 
         visitedD.className = 'leaflet-bar leaflet-control';
+
+        timingA.href="javascript:handleTimingChange()";
+        timingA.innerHTML=`<i style="color: black;" class=\"fas fa-clock\"></i>`;
 
         layerA.href="javascript:handleLayerChange()";
         layerA.innerHTML=`<i style="color: black;" class=\"fas fa-map\"></i>`;

@@ -27,7 +27,7 @@
     cafe: true
     computers: true
   - name: "Nuffield Building"
-    coordinates: [52.449756921315576, -1.9280174099001384]
+    coordinates: [52.4495578201483, -1.9288785069136332]
     spaces: 83
     cafe: false
     computers: true
@@ -41,6 +41,12 @@
     spaces: 36
     coordinates: [52.4497399065335, -1.9330273658288533]
     computers: true
+  - name: "CTL"
+    coordinates: [52.450552589330115, -1.9348512777372417]
+    computers: true
+    spaces: 200
+    url: "https://www.birmingham.ac.uk/facilities/collaborative-teaching-laboratory/ctl.aspx"
+    cafe: true
 
 
 "Other":
