@@ -7,6 +7,9 @@ title: Home
   
 </div>
 
+<div id="card-landing" style="card-group">
+</div>
+
 <script>
   spaces = {{ site.data.studyspaces | jsonify }};
 
@@ -16,31 +19,108 @@ title: Home
 
     iconSize:     [32, 32], // size of the icon
     // shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
     // shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [16, 0] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
+  });
+
+  tileLayers = [];
+
+  customIcons = {};
+
+  customIcons["heybrew"] = L.icon({
+    iconUrl: '/assets/heybrew.jpeg',
+    // shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [32, 32], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
   });
 
   var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
-  var OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  
+  tileLayers.push(OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  });
+  }));
 
-  for (campus in spaces) {
-    for (building in spaces[campus]) {
-      for (space in spaces[campus][building]) {
-        var marker = L.marker(spaces[campus][building]["coordinates"], {icon: studySpaceIcon});
-        marker.icon = studySpaceIcon;
-        marker.bindPopup(`<a style="text-decoration: none;" href= ${spaces[campus][building].url}> ${spaces[campus][building].name} </a>`);
-        marker.addTo(map);
-      }
+  tileLayers.push (
+    Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    })
+  );
+
+  tileLayers.push(
+    Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    })
+  );
+
+  var studySpaces = L.layerGroup();
+
+  console.log(spaces);
+
+  for (let campus in spaces) {
+    for (let building of spaces[campus]) {
+
+        var marker = L.marker(building.coordinates,
+          {icon: building.customicon ? customIcons[building.customicon] : studySpaceIcon}
+        );
+        marker.bindPopup(`<h3 style="margin-top: 0;margin-botton: 2px; color: black;"><small>` +
+          (building.url ? `<a style="text-decoration: none;" href="${building.url}">` : ``)
+            + building.name +
+          (building.url ? `</a>` : ``) +
+          `</small></h3>
+        <ul>
+          <li><a style="text-decoration: none;" href="https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking"> Directions </a></li>`
+          + (building.spaces ? `<li>Spaces: ${building.spaces}</li>` : ``) +
+        `</ul>`);
+
+        marker.addTo(studySpaces);
     }
   }
+  function handleLayerChange() {
+    tileLayers[tileLayersIndex].removeFrom(map);
+    tileLayersIndex = (tileLayersIndex + 1) % tileLayers.length;
+    tileLayers[tileLayersIndex].addTo(map);
+  }
 
-  
-  OpenStreetMap_Mapnik.addTo(map);
+  studySpaces.addTo(map);
+
+  tileLayersIndex = 0;
+  tileLayers[tileLayersIndex].addTo(map);
   L.control.locate().addTo(map);
+
+  L.Control.LayerSwap = L.Control.extend({
+    onAdd: function(map) {
+        var visitedD = L.DomUtil.create('div');
+        var layerA = L.DomUtil.create('a');
+
+        visitedD.className = 'leaflet-bar leaflet-control';
+
+        layerA.href="javascript:handleLayerChange()";
+        layerA.innerHTML=`<i style="color: black;" class=\"fas fa-map\"></i>`;
+
+
+        visitedD.appendChild(layerA);
+        
+        return visitedD;
+    },
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+    });
+
+  L.control.layerswap = function(opts) {
+      return new L.Control.LayerSwap(opts);
+  }
+
+  L.control.layerswap({ position: 'topright' }).addTo(map);
+  
 </script>
 
 

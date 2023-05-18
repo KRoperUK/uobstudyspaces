@@ -1,4 +1,4 @@
-edgbaston:
+"Edgbaston":
   - name: "Library"
     coordinates: [52.45153143506902, -1.9314190137365919]
     url: "https://intranet.birmingham.ac.uk/as/libraryservices/library/index.aspx"
@@ -10,3 +10,17 @@ edgbaston:
     spaces: 60
     cafe: false
     computers: true
+
+"Other":
+  - name: "HeyBrew"
+    coordinates: [52.44571461382367, -1.9329179489378734]
+    url: "https://www.heybrew.co.uk"
+    cafe: true
+    spaces: 30
+    computers: false
+    customicon: "heybrew"
+
+"Selly Oak":
+  - name: "Orchard Learning Resource Centre"
+    url: "https://intranet.birmingham.ac.uk/as/libraryservices/library/libraries-and-opening-hours/libraries/olrc.aspx"
+    coordinates: [52.4342434867683, -1.9476000442124493]
