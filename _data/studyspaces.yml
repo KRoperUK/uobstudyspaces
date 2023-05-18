@@ -10,6 +10,11 @@
     spaces: 60
     cafe: false
     computers: true
+  - name: "Guild of Students"
+    coordinates: [52.44912859757744, -1.926971916421489]
+    spaces: 30
+    cafe: true
+    computers: true
 
 "Other":
   - name: "HeyBrew"
