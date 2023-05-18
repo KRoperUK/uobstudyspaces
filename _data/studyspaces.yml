@@ -15,6 +15,33 @@
     spaces: 30
     cafe: true
     computers: true
+  - name: "Computer Science Building - Sloman Lounge"
+    coordinates: [52.450129553930445, -1.9358595683889959]
+    spaces: 20
+    cafe: false
+    computers: true
+  - name: "Murray Learning Centre"
+    coordinates: [52.45068567347343, -1.9356770692989167]
+    spaces: 434
+    url: "https://intranet.birmingham.ac.uk/student/study-spaces/murray-learning-centre.aspx"
+    cafe: true
+    computers: true
+  - name: "Nuffield Building"
+    coordinates: [52.449756921315576, -1.9280174099001384]
+    spaces: 83
+    cafe: false
+    computers: true
+    url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
+  - name: "Teaching and Learning Building"
+    url: "https://intranet.birmingham.ac.uk/student/study-spaces/teaching-learning-building/index.aspx"
+    spaces: 515
+    coordinates: [52.45228829046721, -1.9311276856782928]
+  - name: "Old Gym"
+    url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
+    spaces: 36
+    coordinates: [52.4497399065335, -1.9330273658288533]
+    computers: true
+
 
 "Other":
   - name: "HeyBrew"
