@@ -11,7 +11,8 @@
           <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
           <small>{{ site.tagline }}</small>
         </h1>
-        <p ><a id="time" style="text-decoration: none;" href="javascript:handleRefresh();"></a></a></p>
+        <p ><a id="time" style="text-decoration: none;" href="javascript:handleRefresh();"></a></a><br>
+        <a style="text-decoration: none;" href="javascript:handleOffset(-1);">-1 hr</a>&nbsp;&nbsp;&nbsp;<a style="text-decoration: none;" href="javascript:handleOffset(1);">+1 hr</a> </p>
         
         <a href="javascript:handleTimingChange();" style="text-decoration: none;">
           <button class="button-6" role="button" id="openDisclaimer">Only showing open</button>

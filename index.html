@@ -242,6 +242,15 @@ title: Home
     console.log("Refreshed", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
     updateMap();
   }
+  
+  function handleOffset(hourOffset) {
+    openStudySpaces.clearLayers();
+    closedStudySpaces.clearLayers();
+    date.setHours(date.getHours() + hourOffset);
+    document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
+    console.log("Offset", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
+    updateMap();
+  }
 
   updateMap();
   function handleLayerChange() {
