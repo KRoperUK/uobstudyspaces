@@ -150,6 +150,28 @@
     computers: false
     customicon: "coffee"
     url: "https://www.birmingham.ac.uk/bramall/visit/index.aspx"
+  - name: "Costa - University Centre"
+    coordinates: [52.45077032137196, -1.9322503318183974]
+    cafe: true
+    computers: true
+    spaces: 100
+    customicon: "costa"
+    opening_hours: "Mo-Fr 08:00-18:00; 2023 May 29 off"
+    url: "https://www.birmingham.ac.uk/community/university-campus/retail/food-fellows/main-campus/coffee.aspx"
+  - name: "Costa - Sport Centre"
+    coordinates: [52.44778800868414, -1.9270270703278198]
+    cafe: true
+    spaces: 40
+    customicon: "costa"
+    opening_hours: "Mo-Su 08:00-18:00; 2023 May 29 08:00-17:00"
+    url: "https://www.birmingham.ac.uk/community/university-campus/retail/food-fellows/main-campus/coffee.aspx"
+  - name: "Starbucks - Muirhead Tower"
+    url: "https://www.starbucks.com/store-locator/store/3136/birmingham-university-muirhead-muirhead-tower-edgbaston-eng-b-15-2-tt-gb"
+    coordinates: [52.45161495801768, -1.9293195895695143]
+    cafe: true
+    spaces: 30
+    customicon: "starbucks"
+    opening_hours: "Mo-Fr 08:00-17:00; 2023 May 29 off"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"

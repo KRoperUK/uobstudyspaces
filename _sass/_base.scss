@@ -69,6 +69,10 @@ mark {
   border-radius: .125rem;
 }
 
+.makeWhite {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
 
 
 .button-6 {
