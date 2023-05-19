@@ -69,7 +69,7 @@
     coordinates: [52.4497399065335, -1.9330273658288533]
     computers: true
     opening_hours: "Mo-Fr 08:00-19:00"
-    note: "Study Spaces on floors LG and UG only, 36 spaces - 12 with PCs"
+    notes: "Study Spaces on floors LG and UG only, 36 spaces - 12 with PCs"
   - name: "Strathcona Building"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/strathcona-building.aspx"
     opening_hours: "Mo-Fr 07:00-21:00"
@@ -86,7 +86,7 @@
     opening_hours: "Mo-Fr 08:30-19:00"
     url: "https://www.birmingham.ac.uk/facilities/collaborative-teaching-laboratory/ctl.aspx"
     cafe: true
-    note: "The CTL Main Building informal seating areas are open Monday-Friday 08.30-19.00 in term time. The Grumpy Mule Café. Opening hours in term time are: Monday-Friday 9.00-16.00."
+    notes: "The CTL Main Building informal seating areas are open Monday-Friday 08.30-19.00 in term time. The Grumpy Mule Café. Opening hours in term time are: Monday-Friday 9.00-16.00."
   - name: "Medical School Doug Ellis Suite and Clusters"
     coordinates: [52.452140095078576, -1.938188342138449]
     spaces: 210
@@ -115,7 +115,7 @@
   - name: "Barber Fine Art Library"
     coordinates: [52.450292492265554, -1.92772392212454]
     opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45,14:15-17:00; Sa-Su off; PH off"
-    note: "Closed on Bank Holidays and University closed days."
+    notes: "Closed on Bank Holidays and University closed days."
     
 
 
@@ -141,7 +141,7 @@
   - name: "Dental School"
     coordinates: [52.4502681094861, -1.914451769209546]
     opening_hours: "Mo-Fr 06:30-19:30"
-    note: "Open to dental students only"
+    notes: "Open to dental students only"
   - name: "Bramall Music Building - Cafe"
     coordinates: [52.449366791493105, -1.9297880296094734]
     opening_hours: "Mo-Fr 08:30-15:30"
