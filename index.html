@@ -125,7 +125,7 @@ title: Home
           markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
           markerList.appendChild(markerListOpeningHours);
           
-          let oh = new opening_hours(building.opening_hours, {}, { 'locale': locale });
+          let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
           
           if (oh.getState(new Date())) {
             markerListOpeningHours.innerHTML += " (Open)";
@@ -136,7 +136,7 @@ title: Home
             markerListOpeningHours.style.color = "red";
           }
 
-          console.log(oh.getWarnings());
+          // console.log(oh.getWarnings());
           
         }
 
