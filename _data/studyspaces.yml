@@ -20,12 +20,12 @@
     spaces: 160
     cafe: true
     opening_hours: "Mo-Fr 08:00-18:00"
-  - name: "Harding Study Lounge"
+  - name: "Harding Study Space"
     coordinates: [52.45006501198604, -1.930515147314549]
     spaces: 195
     cafe: false
     computers: true
-    opening_hours: "Mo-Fr 08:00-19:00"
+    opening_hours: "Mo-Fr 09:00-19:00"
   - name: "Guild of Students"
     coordinates: [52.44912859757744, -1.926971916421489]
     spaces: 80
