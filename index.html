@@ -86,6 +86,24 @@ title: Home
     })
   );
 
+  tileLayers.push(
+    DarkGreyBase = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 20,
+    })
+  );
+  tileLayers.push(
+    LightGreyBase = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 20,
+    })
+  );
+  tileLayers.push(
+    Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+    })
+  );
+
+
+  
   var openStudySpaces = L.layerGroup();
   var closedStudySpaces = L.layerGroup();
 
