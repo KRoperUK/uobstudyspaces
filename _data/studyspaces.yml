@@ -141,6 +141,12 @@
     coordinates: [52.4502681094861, -1.914451769209546]
     opening_hours: "Mo-Fr 06:30-19:30"
     note: "Open to dental students only"
+  - name: "Bramall Music Building - Cafe"
+    coordinates: [52.449366791493105, -1.9297880296094734]
+    opening_hours: "Mo-Fr 08:30-15:30"
+    cafe: true
+    computers: false
+    url: "https://www.birmingham.ac.uk/bramall/visit/index.aspx"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"
