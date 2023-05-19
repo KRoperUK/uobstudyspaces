@@ -116,6 +116,7 @@
     coordinates: [52.450292492265554, -1.92772392212454]
     opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45,14:15-17:00; Sa-Su off; PH off"
     note: "Closed on Bank Holidays and University closed days."
+    
 
 
 "Other":
@@ -146,6 +147,7 @@
     opening_hours: "Mo-Fr 08:30-15:30"
     cafe: true
     computers: false
+    customicon: "coffee"
     url: "https://www.birmingham.ac.uk/bramall/visit/index.aspx"
 
 "Selly Oak":

@@ -69,6 +69,13 @@ title: Home
     iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
     popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
   });
+
+  customIcons["coffee"] = L.icon ({
+    iconUrl: '/assets/coffee.svg',
+    iconSize:     [32, 32], // size of the icon
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
+  });
   
   var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
   
