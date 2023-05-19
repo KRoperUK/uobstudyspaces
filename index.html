@@ -14,6 +14,7 @@ title: Home
 
 <script>
   let locale = navigator.language || navigator.userLanguage;
+  let date;
 
   spaces = {{ site.data.studyspaces | jsonify }};
 
@@ -111,126 +112,138 @@ title: Home
   var openStudySpaces = L.layerGroup();
   var closedStudySpaces = L.layerGroup();
 
-  for (let campus in spaces) {
-    for (let building of spaces[campus]) {
+  function updateMap() {
+    for (let campus in spaces) {
+      for (let building of spaces[campus]) {
 
-        var marker = L.marker(building.coordinates,
-          {icon: building.customicon ? customIcons[building.customicon] : (campus == "Other" ? customIcons["otherStudy"] : studySpaceIcon)}
-        );
+          var marker = L.marker(building.coordinates,
+            {icon: building.customicon ? customIcons[building.customicon] : (campus == "Other" ? customIcons["otherStudy"] : studySpaceIcon)}
+          );
 
-        hoursFlag = false;
+          hoursFlag = false;
 
-        markerPopup = L.DomUtil.create('div');
+          markerPopup = L.DomUtil.create('div');
 
-        markerHeading = L.DomUtil.create('h3');
-        markerHeading.style.marginTop = 0;
-        markerHeading.style.marginBottom = "2px";
-        markerHeading.style.color = "black";
+          markerHeading = L.DomUtil.create('h3');
+          markerHeading.style.marginTop = 0;
+          markerHeading.style.marginBottom = "2px";
+          markerHeading.style.color = "black";
 
-        
-        markerHeadingText = L.DomUtil.create('small');
-        if (building.url) {
-          markerHeadingText.innerHTML = `<a style="text-decoration: none;" href="${building.url}">` + building.name + `</a>`;
-        } else {
-          markerHeadingText.innerHTML = building.name;
-        }
-
-        markerHeadingDirectionsA = L.DomUtil.create('a');
-        markerHeadingDirectionsA.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
-        markerHeadingDirectionsA.style.textDecoration = "none";
-
-        markerHeadingDirectionsIcon = L.DomUtil.create('i');
-        markerHeadingDirectionsIcon.style.marginLeft = "0.5em";
-        markerHeadingDirectionsIcon.style.fontSize = "16px";
-        markerHeadingDirectionsIcon.style.color = "black";
-        markerHeadingDirectionsIcon.className = "fas fa-directions";
-        markerHeadingDirectionsIcon.style.cursor = "pointer";
-        markerHeadingDirectionsA.appendChild(markerHeadingDirectionsIcon);
-
-        markerHeading.appendChild(markerHeadingText);
-        markerHeading.appendChild(markerHeadingDirectionsA);
-
-        markerPopup.appendChild(markerHeading);
-
-        markerList = L.DomUtil.create('ul');
-        markerList.style.marginTop = 0;
-        markerList.style.marginBottom = 0;
-
-        if (building.opening_hours) {
-          markerListOpeningHours = L.DomUtil.create('li');
-          markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
-          markerList.appendChild(markerListOpeningHours);
           
-          let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
-          
-          if (oh.getState(new Date())) {
-            markerListOpeningHours.innerHTML += " (Open)";
-            markerListOpeningHours.style.color = "green";
-            hoursFlag = true;
+          markerHeadingText = L.DomUtil.create('small');
+          if (building.url) {
+            markerHeadingText.innerHTML = `<a style="text-decoration: none;" href="${building.url}">` + building.name + `</a>`;
           } else {
-            markerListOpeningHours.innerHTML += " (Closed)";
-            markerListOpeningHours.style.color = "red";
+            markerHeadingText.innerHTML = building.name;
           }
 
-          // console.log(oh.getWarnings());
+          markerHeadingDirectionsA = L.DomUtil.create('a');
+          markerHeadingDirectionsA.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
+          markerHeadingDirectionsA.style.textDecoration = "none";
+
+          markerHeadingDirectionsIcon = L.DomUtil.create('i');
+          markerHeadingDirectionsIcon.style.marginLeft = "0.5em";
+          markerHeadingDirectionsIcon.style.fontSize = "16px";
+          markerHeadingDirectionsIcon.style.color = "black";
+          markerHeadingDirectionsIcon.className = "fas fa-directions";
+          markerHeadingDirectionsIcon.style.cursor = "pointer";
+          markerHeadingDirectionsA.appendChild(markerHeadingDirectionsIcon);
+
+          markerHeading.appendChild(markerHeadingText);
+          markerHeading.appendChild(markerHeadingDirectionsA);
+
+          markerPopup.appendChild(markerHeading);
+
+          markerList = L.DomUtil.create('ul');
+          markerList.style.marginTop = 0;
+          markerList.style.marginBottom = 0;
+
+          if (building.opening_hours) {
+            markerListOpeningHours = L.DomUtil.create('li');
+            markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
+            markerList.appendChild(markerListOpeningHours);
+            
+            let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
+            
+            if (oh.getState(date)) {
+              markerListOpeningHours.innerHTML += " (Open)";
+              markerListOpeningHours.style.color = "green";
+              hoursFlag = true;
+            } else {
+              markerListOpeningHours.innerHTML += " (Closed)";
+              markerListOpeningHours.style.color = "red";
+            }
+
+            // console.log(oh.getWarnings());
+            
+          }
+
+          if (building.notes) {
+            markerListNotes = L.DomUtil.create('li');
+            markerListNotes.innerHTML = building.notes;
+            markerList.appendChild(markerListNotes);
+          }
+
+          if (building.spaces) {
+            markerListSpaces = L.DomUtil.create('li');
+            markerListSpaces.innerHTML = `Spaces: ${building.spaces}`;
+            markerList.appendChild(markerListSpaces);
+          }
+
+          if (building.cafe) {
+            markerListCafe = L.DomUtil.create('li');
+            markerListCafe.innerHTML = `Has a cafe`;
+            markerList.appendChild(markerListCafe);
+          }
+
+          if (building.vending_machines) {
+            markerListVending = L.DomUtil.create('li');
+            markerListVending.innerHTML = `Has vending machines`;
+            markerList.appendChild(markerListVending);
+          }
+
+          if (building.computers) {
+            markerListComputers = L.DomUtil.create('li');
+            markerListComputers.innerHTML = `Has computers`;
+            markerList.appendChild(markerListComputers);
+          }
+
+          if (building.quiet) {
+            markerListQuiet = L.DomUtil.create('li');
+            markerListQuiet.innerHTML = `Has quiet study`;
+            markerList.appendChild(markerListQuiet);
+          }
+
+          if (building.group) {
+            markerListGroup = L.DomUtil.create('li');
+            markerListGroup.innerHTML = `Has group study`;
+            markerList.appendChild(markerListGroup);
+          }
+
+          markerPopup.appendChild(markerList);
+
+
+          marker.bindPopup(markerPopup);
           
-        }
-
-        if (building.notes) {
-          markerListNotes = L.DomUtil.create('li');
-          markerListNotes.innerHTML = building.notes;
-          markerList.appendChild(markerListNotes);
-        }
-
-        if (building.spaces) {
-          markerListSpaces = L.DomUtil.create('li');
-          markerListSpaces.innerHTML = `Spaces: ${building.spaces}`;
-          markerList.appendChild(markerListSpaces);
-        }
-
-        if (building.cafe) {
-          markerListCafe = L.DomUtil.create('li');
-          markerListCafe.innerHTML = `Has a cafe`;
-          markerList.appendChild(markerListCafe);
-        }
-
-        if (building.vending_machines) {
-          markerListVending = L.DomUtil.create('li');
-          markerListVending.innerHTML = `Has vending machines`;
-          markerList.appendChild(markerListVending);
-        }
-
-        if (building.computers) {
-          markerListComputers = L.DomUtil.create('li');
-          markerListComputers.innerHTML = `Has computers`;
-          markerList.appendChild(markerListComputers);
-        }
-
-        if (building.quiet) {
-          markerListQuiet = L.DomUtil.create('li');
-          markerListQuiet.innerHTML = `Has quiet study`;
-          markerList.appendChild(markerListQuiet);
-        }
-
-        if (building.group) {
-          markerListGroup = L.DomUtil.create('li');
-          markerListGroup.innerHTML = `Has group study`;
-          markerList.appendChild(markerListGroup);
-        }
-
-        markerPopup.appendChild(markerList);
-
-
-        marker.bindPopup(markerPopup);
-        
-        if (hoursFlag) {
-          marker.addTo(openStudySpaces);
-        } else {
-          marker.addTo(closedStudySpaces);
-        }
-        
+          if (hoursFlag) {
+            marker.addTo(openStudySpaces);
+          } else {
+            marker.addTo(closedStudySpaces);
+          }
+          
+      }
     }
   }
+  function handleRefresh() {
+    openStudySpaces.clearLayers();
+    closedStudySpaces.clearLayers();
+    date = new Date();
+    document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
+    console.log("Refreshed", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
+    updateMap();
+  }
+
+  updateMap();
   function handleLayerChange() {
     tileLayers[parseInt(localStorage.getItem("layerIndex"))].removeFrom(map);
     localStorage.setItem("layerIndex", (parseInt(localStorage.getItem("layerIndex")) + 1) % tileLayers.length);
@@ -292,5 +305,7 @@ title: Home
   }
 
   L.control.layerswap({ position: 'topright' }).addTo(map);
+
+  handleRefresh();
   
 </script>
