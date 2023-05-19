@@ -6,7 +6,7 @@
     spaces: 2000
     computers: true
     vending_machines: true
-    opening_hours: "Mo-Su 00:00-24:00;"
+    opening_hours: "Mo-Su 00:00-24:00"
     quiet: true
     group: true
   - name: "Law Study Space - Harding Building"
@@ -14,7 +14,7 @@
     spaces: 60
     cafe: false
     computers: true
-    opening_hours: "Mo-Fr 08:00-19:00;"
+    opening_hours: "Mo-Fr 08:00-19:00"
   - name: "Guild of Students"
     coordinates: [52.44912859757744, -1.926971916421489]
     spaces: 30
@@ -69,11 +69,11 @@
     customicon: "heybrew"
   - name: "Mason Laundry"
     coordinates: [52.45893079221071, -1.9263403513167143]
-    opening_hours: "Mo-Su 00:00-24:00;"
+    opening_hours: "Mo-Su 00:00-24:00"
     notes: "Open to students living in Mason only"
   - name: "Starbucks - Bournbrook Pavilion"
     coordinates: [52.44737559527004, -1.9335380089429546]
-    opening_hours: "Mo-Sa 08:00-17:00;"
+    opening_hours: "Mo-Sa 08:00-17:00"
     url: "https://www.starbucks.co.uk/store-locator/store/1029755/bournbrook-pavilion-uni-of-birmingham-birmingham-eng-b15-2tt-gb?types=starbucks&latLng=52.44753%2C-1.9354500000000097&zoom=15&store=51286-263951&storeDetail=51286-263951"
     customicon: "starbucks"
 

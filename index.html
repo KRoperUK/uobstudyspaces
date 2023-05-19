@@ -13,7 +13,13 @@ title: Home
 </div>
 
 <script>
+  let locale = navigator.language || navigator.userLanguage;
+
   spaces = {{ site.data.studyspaces | jsonify }};
+
+  if (localStorage.getItem("onlyOpen") === null) {
+    localStorage.setItem("onlyOpen", "true");
+  }
 
   const studySpaceIcon = L.icon({
     iconUrl: '/assets/studyspace.png',
@@ -76,7 +82,8 @@ title: Home
     })
   );
 
-  var studySpaces = L.layerGroup();
+  var openStudySpaces = L.layerGroup();
+  var closedStudySpaces = L.layerGroup();
 
   for (let campus in spaces) {
     for (let building of spaces[campus]) {
@@ -84,6 +91,8 @@ title: Home
         var marker = L.marker(building.coordinates,
           {icon: building.customicon ? customIcons[building.customicon] : (campus == "Other" ? customIcons["otherStudy"] : studySpaceIcon)}
         );
+
+        hoursFlag = false;
 
         markerPopup = L.DomUtil.create('div');
 
@@ -107,6 +116,26 @@ title: Home
         markerList.style.marginTop = 0;
         markerList.style.marginBottom = 0;
 
+        if (building.opening_hours) {
+          markerListOpeningHours = L.DomUtil.create('li');
+          markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
+          markerList.appendChild(markerListOpeningHours);
+          
+          let oh = new opening_hours(building.opening_hours, {}, { 'locale': locale });
+          
+          if (oh.getState(new Date())) {
+            markerListOpeningHours.innerHTML += " (Open)";
+            markerListOpeningHours.style.color = "green";
+            hoursFlag = true;
+          } else {
+            markerListOpeningHours.innerHTML += " (Closed)";
+            markerListOpeningHours.style.color = "red";
+          }
+
+          console.log(oh.getWarnings());
+          
+        }
+
         markerListDirections = L.DomUtil.create('li');
         markerListDirectionsText = L.DomUtil.create('a');
         markerListDirectionsText.style.textDecoration = "none";
@@ -115,12 +144,6 @@ title: Home
         markerListDirections.appendChild(markerListDirectionsText);
 
         markerList.appendChild(markerListDirections);
-
-        if (building.opening_hours) {
-          markerListOpeningHours = L.DomUtil.create('li');
-          markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
-          markerList.appendChild(markerListOpeningHours);
-        }
 
         if (building.notes) {
           markerListNotes = L.DomUtil.create('li');
@@ -136,7 +159,7 @@ title: Home
 
         if (building.cafe) {
           markerListCafe = L.DomUtil.create('li');
-          markerListCafe.innerHTML = `Has cafe`;
+          markerListCafe.innerHTML = `Has a cafe`;
           markerList.appendChild(markerListCafe);
         }
 
@@ -168,7 +191,13 @@ title: Home
 
 
         marker.bindPopup(markerPopup);
-        marker.addTo(studySpaces);
+        
+        if (hoursFlag) {
+          marker.addTo(openStudySpaces);
+        } else {
+          marker.addTo(closedStudySpaces);
+        }
+        
     }
   }
   function handleLayerChange() {
@@ -177,11 +206,26 @@ title: Home
     tileLayers[tileLayersIndex].addTo(map);
   }
   function handleTimingChange() {
-    console.log("Timing change feature coming soon!");
+    if (localStorage.getItem("onlyOpen") == "true") {
+      localStorage.setItem("onlyOpen", "false");
+      if (!map.hasLayer(closedStudySpaces)) {
+        closedStudySpaces.addTo(map);
+      }
+      document.getElementById("timingA").style.color = "black";
+    } else {
+      localStorage.setItem("onlyOpen", "true");
+      if (map.hasLayer(closedStudySpaces)) {
+        closedStudySpaces.removeFrom(map);
+      }
+      document.getElementById("timingA").style.color = "green";
+    }
+    
   }
 
-  studySpaces.addTo(map);
-
+  openStudySpaces.addTo(map);
+  if (localStorage.getItem("onlyOpen") != "true") {
+    closedStudySpaces.addTo(map);
+  }
   tileLayersIndex = 0;
   tileLayers[tileLayersIndex].addTo(map);
   L.control.locate().addTo(map);
@@ -195,7 +239,7 @@ title: Home
         visitedD.className = 'leaflet-bar leaflet-control';
 
         timingA.href="javascript:handleTimingChange()";
-        timingA.innerHTML=`<i style="color: black;" class=\"fas fa-clock\"></i>`;
+        timingA.innerHTML=`<i id="timingA" style="color: ${localStorage.getItem("onlyOpen") == "true" ? "green" : "black"}" class=\"fas fa-clock\"></i>`;
 
         layerA.href="javascript:handleLayerChange()";
         layerA.innerHTML=`<i style="color: black;" class=\"fas fa-map\"></i>`;
