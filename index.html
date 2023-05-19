@@ -134,7 +134,21 @@ title: Home
         } else {
           markerHeadingText.innerHTML = building.name;
         }
+
+        markerHeadingDirectionsA = L.DomUtil.create('a');
+        markerHeadingDirectionsA.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
+        markerHeadingDirectionsA.style.textDecoration = "none";
+
+        markerHeadingDirectionsIcon = L.DomUtil.create('i');
+        markerHeadingDirectionsIcon.style.marginLeft = "0.5em";
+        markerHeadingDirectionsIcon.style.fontSize = "16px";
+        markerHeadingDirectionsIcon.style.color = "black";
+        markerHeadingDirectionsIcon.className = "fas fa-directions";
+        markerHeadingDirectionsIcon.style.cursor = "pointer";
+        markerHeadingDirectionsA.appendChild(markerHeadingDirectionsIcon);
+
         markerHeading.appendChild(markerHeadingText);
+        markerHeading.appendChild(markerHeadingDirectionsA);
 
         markerPopup.appendChild(markerHeading);
 
@@ -161,15 +175,6 @@ title: Home
           // console.log(oh.getWarnings());
           
         }
-
-        markerListDirections = L.DomUtil.create('li');
-        markerListDirectionsText = L.DomUtil.create('a');
-        markerListDirectionsText.style.textDecoration = "none";
-        markerListDirectionsText.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
-        markerListDirectionsText.innerHTML = "Directions";
-        markerListDirections.appendChild(markerListDirectionsText);
-
-        markerList.appendChild(markerListDirections);
 
         if (building.notes) {
           markerListNotes = L.DomUtil.create('li');
