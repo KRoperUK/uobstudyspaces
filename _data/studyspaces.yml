@@ -19,19 +19,19 @@
     coordinates: [52.453234759823935, -1.9275978751011424]
     spaces: 160
     cafe: true
-    opening_hours: "Mo-Fr 08:00-18:00"
+    opening_hours: "Mo-Fr 08:00-18:00; 2023 May 29 off"
   - name: "Harding Study Space"
     coordinates: [52.45006501198604, -1.930515147314549]
     spaces: 195
     cafe: false
     computers: true
-    opening_hours: "Mo-Fr 09:00-19:00"
+    opening_hours: "Mo-Fr 09:00-19:00; 2023 May 29 off"
   - name: "Guild of Students"
     coordinates: [52.44912859757744, -1.926971916421489]
     spaces: 80
     cafe: true
     computers: true
-    opening_hours: "Mo-Fr 08:00-21:00; Tu,Th 08:00-22:00; Sa,Su 10:00-20:00; SH Mo-Fr 09:00-17:00; SH Sa-Su off"
+    opening_hours: "Mo-Fr 08:00-21:00; Tu,Th 08:00-22:00; Sa,Su 10:00-20:00; SH Mo-Fr 09:00-17:00; SH Sa-Su off; 2023 May 29 off"
     url: "https://www.guildofstudents.com/contact-us/"
   - name: "Computer Science Building - Sloman Lounge"
     coordinates: [52.450129553930445, -1.9358595683889959]
@@ -40,19 +40,20 @@
     vending_machines: true
     computers: true
     customicon: "otherStudy"
+    opening_hours: "Mo-Fr 08:00-18:00; 2023 May 29 off"
   - name: "Murray Learning Centre"
     coordinates: [52.45068567347343, -1.9356770692989167]
     spaces: 434
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/murray-learning-centre.aspx"
     cafe: true
-    opening_hours: "Mo-Fr 07:00-22:00; Sa-Su 09:00-19:00"
+    opening_hours: "Mo-Fr 07:00-22:00; Sa-Su 09:00-19:00; 2023 May 29 off"
     computers: true
   - name: "Nuffield Building"
     coordinates: [52.4495578201483, -1.9288785069136332]
     spaces: 83
     cafe: false
     vending_machines: true
-    opening_hours: "Mo-Fr 07:00-22:00"
+    opening_hours: "Mo-Fr 07:00-22:00; 2023 May 29 off"
     computers: true
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
   - name: "Teaching and Learning Building"
@@ -61,60 +62,60 @@
     cafe: true
     vending_machines: true
     coordinates: [52.45228829046721, -1.9311276856782928]
-    opening_hours: "Mo-Fr 08:00-22:00; 2023 May 27-29 10:00-18:00" # TODO: Check after 29th May
+    opening_hours: "Mo-Fr 08:00-22:00; Sa-Su 10:00-18:00 open \"Term-time Only\"; 2023 May 27-29 10:00-18:00" # TODO: Check after 29th May
     notes: "Entry by ID card after 18:00 . Last entrance 21:45. Saturday 27, Sunday 28 and Bank Holiday Monday 29 May : 10:00 - 18:00."
   - name: "Old Gym"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
     spaces: 36
     coordinates: [52.4497399065335, -1.9330273658288533]
     computers: true
-    opening_hours: "Mo-Fr 08:00-19:00"
+    opening_hours: "Mo-Fr 08:00-19:00; 2023 May 29 off"
     notes: "Study Spaces on floors LG and UG only, 36 spaces - 12 with PCs"
   - name: "Strathcona Building"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/strathcona-building.aspx"
-    opening_hours: "Mo-Fr 07:00-21:00"
+    opening_hours: "Mo-Fr 07:00-21:00; 2023 May 29 off"
     coordinates: [52.45159108454067, -1.9283069288312815]
     spaces: 142
   - name: "University Centre: The Loft"
     spaces: 165
-    opening_hours: "Mo-Fr 08:45-18:00"
+    opening_hours: "Mo-Fr 08:45-18:00; 2023 May 29 off"
     coordinates: [52.45086729937176, -1.9322620106118724]
   - name: "CTL"
     coordinates: [52.450552589330115, -1.9348512777372417]
     computers: true
     spaces: 400
-    opening_hours: "Mo-Fr 08:30-19:00"
+    opening_hours: "Mo-Fr 08:30-19:00; 2023 May 29 off"
     url: "https://www.birmingham.ac.uk/facilities/collaborative-teaching-laboratory/ctl.aspx"
     cafe: true
     notes: "The CTL Main Building informal seating areas are open Monday-Friday 08.30-19.00 in term time. The Grumpy Mule Café. Opening hours in term time are: Monday-Friday 9.00-16.00."
   - name: "Medical School Doug Ellis Suite and Clusters"
     coordinates: [52.452140095078576, -1.938188342138449]
     spaces: 210
-    opening_hours: "Mo-Su 07:00-22:00"
+    opening_hours: "Mo-Su 07:00-22:00; 2023 May 29 off"
     url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
   - name: "J G Smith Building"
     coordinates: [52.45218459078162, -1.928624802624779]
     spaces: 185
-    opening_hours: "Mo-Fr 08:00-19:00"
+    opening_hours: "Mo-Fr 08:00-19:00; 2023 May 29 off"
   - name: "Chemical Engineering : Garner Suite"
     coordinates: [52.44918719864446, -1.935537328879418]
     spaces: 50
-    opening_hours: "Mo-Fr 08:00-18:00"
+    opening_hours: "Mo-Fr 08:00-18:00; 2023 May 29 off"
   - name: "Aston Webb Great Hall Block LG04"
     coordinates: [52.449036110648485, -1.9308338430175827]
     spaces: 33
-    opening_hours: "Mo-Fr 08:00-20:00"
+    opening_hours: "Mo-Fr 08:00-20:00; 2023 May 29 off"
   - name: "Aston Webb C Block Student Study Zone"
     coordinates: [52.448874228973914, -1.9301171869299107]
     spaces: 67
-    opening_hours: "Mo-Fr 08:00-20:00"
+    opening_hours: "Mo-Fr 08:00-20:00; 2023 May 29 off"
   - name: "Arts Building : Mason Lounge"
     spaces: 142
-    opening_hours: "Mo-Fr 08:00-19:00"
+    opening_hours: "Mo-Fr 08:00-19:00; 2023 May 29 off"
     coordinates: [52.45102090284377, -1.9290465152179002]
   - name: "Barber Fine Art Library"
     coordinates: [52.450292492265554, -1.92772392212454]
-    opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45,14:15-17:00; Sa-Su off; PH off"
+    opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45,14:15-17:00; Sa-Su off; PH off; 2023 May 29 off"
     notes: "Closed on Bank Holidays and University closed days."
     
 
@@ -140,7 +141,7 @@
     customicon: "starbucks"
   - name: "Dental School"
     coordinates: [52.4502681094861, -1.914451769209546]
-    opening_hours: "Mo-Fr 06:30-19:30"
+    opening_hours: "Mo-Fr 06:30-19:30; 2023 May 29 off"
     notes: "Open to dental students only"
   - name: "Bramall Music Building - Cafe"
     coordinates: [52.449366791493105, -1.9297880296094734]
