@@ -289,6 +289,8 @@ title: Home
         var visitedD = L.DomUtil.create('div');
         var layerA = L.DomUtil.create('a');
         var timingA = L.DomUtil.create('a');
+        var plusOneA = L.DomUtil.create('a');
+        var minusOneA = L.DomUtil.create('a');
 
         visitedD.className = 'leaflet-bar leaflet-control';
 
@@ -298,9 +300,17 @@ title: Home
         layerA.href="javascript:handleLayerChange()";
         layerA.innerHTML=`<i style="color: black;" class=\"fas fa-map\"></i>`;
 
+        plusOneA.href="javascript:handleOffset(1)";
+        plusOneA.innerHTML=`<i style="color: black;" class=\"fas fa-plus\"></i> <i id="time" style="color: black;" class=\"fas fa-clock\"></i></i>`;
+
+        minusOneA.href="javascript:handleOffset(-1)";
+        minusOneA.innerHTML=`<i style="color: black;" class=\"fas fa-minus\"></i> <i id="time" style="color: black;" class=\"fas fa-clock\"></i></i>`;
+
 
         visitedD.appendChild(layerA);
         visitedD.appendChild(timingA);
+        visitedD.appendChild(plusOneA);
+        visitedD.appendChild(minusOneA);
         
         return visitedD;
     },
