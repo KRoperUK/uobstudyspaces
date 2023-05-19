@@ -20,15 +20,15 @@
     spaces: 160
     cafe: true
     opening_hours: "Mo-Fr 08:00-18:00"
-  - name: "Law Study Space - Harding Building"
+  - name: "Harding Study Lounge"
     coordinates: [52.45006501198604, -1.930515147314549]
-    spaces: 60
+    spaces: 195
     cafe: false
     computers: true
     opening_hours: "Mo-Fr 08:00-19:00"
   - name: "Guild of Students"
     coordinates: [52.44912859757744, -1.926971916421489]
-    spaces: 30
+    spaces: 80
     cafe: true
     computers: true
     opening_hours: "Mo-Fr 08:00-21:00; Tu,Th 08:00-22:00; Sa,Su 10:00-20:00; SH Mo-Fr 09:00-17:00; SH Sa-Su OFF;"
@@ -82,9 +82,40 @@
   - name: "CTL"
     coordinates: [52.450552589330115, -1.9348512777372417]
     computers: true
-    spaces: 200
+    spaces: 400
+    opening_hours: "Mo-Fr 08:30-19:00"
     url: "https://www.birmingham.ac.uk/facilities/collaborative-teaching-laboratory/ctl.aspx"
     cafe: true
+    note: "The CTL Main Building informal seating areas are open Monday-Friday 08.30-19.00 in term time. The Grumpy Mule Café. Opening hours in term time are: Monday-Friday 9.00-16.00."
+  - name: "Medical School Doug Ellis Suite and Clusters"
+    coordinates: [52.452140095078576, -1.938188342138449]
+    spaces: 210
+    opening_hours: "Mo-Su 07:00-22:00"
+    url: "https://intranet.birmingham.ac.uk/student/study-spaces/current-hours.aspx"
+  - name: "J G Smith Building"
+    coordinates: [52.45218459078162, -1.928624802624779]
+    spaces: 185
+    opening_hours: "Mo-Fr 08:00-19:00"
+  - name: "Chemical Engineering : Garner Suite"
+    coordinates: [52.44918719864446, -1.935537328879418]
+    spaces: 50
+    opening_hours: "Mo-Fr 08:00-18:00"
+  - name: "Aston Webb Great Hall Block LG04"
+    coordinates: [52.449036110648485, -1.9308338430175827]
+    spaces: 33
+    opening_hours: "Mo-Fr 08:00-20:00"
+  - name: "Aston Webb C Block Student Study Zone"
+    coordinates: [52.448874228973914, -1.9301171869299107]
+    spaces: 67
+    opening_hours: "Mo-Fr 08:00-20:00"
+  - name: "Arts Building : Mason Lounge"
+    spaces: 142
+    opening_hours: "Mo-Fr 08:00-19:00"
+    coordinates: [52.45102090284377, -1.9290465152179002]
+  - name: "Barber Fine Art Library"
+    coordinates: [52.450292492265554, -1.92772392212454]
+    opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45; Fr 14:15-17:00; Sa-Su OFF; PH OFF;"
+    note: "Closed on Bank Holidays and University closed days."
 
 
 "Other":
@@ -106,6 +137,10 @@
     cafe: true
     url: "https://www.starbucks.co.uk/store-locator/store/1029755/bournbrook-pavilion-uni-of-birmingham-birmingham-eng-b15-2tt-gb?types=starbucks&latLng=52.44753%2C-1.9354500000000097&zoom=15&store=51286-263951&storeDetail=51286-263951"
     customicon: "starbucks"
+  - name: "Dental School"
+    coordinates: [52.4502681094861, -1.914451769209546]
+    opening_hours: "Mo-Fr 06:30-19:30"
+    note: "Open to dental students only"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"
