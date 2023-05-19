@@ -3,7 +3,7 @@ A simple website to show the study spaces available at the University of Birming
 
 ## [Site](https://www.uobstudy.space/)
 
-## Acknowledgements
+## Acknowledgements
 
 - Font Awesome for Clock, +, -, Map, and Refresh icons.
 - Leaflet.js
