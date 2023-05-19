@@ -25,6 +25,10 @@ title: Home
     document.getElementById("openDisclaimer").innerHTML = "Showing all study spaces";
   }
 
+  if (localStorage.getItem("layerIndex") === null) {
+    localStorage.setItem("layerIndex", "0");
+  }
+
   const studySpaceIcon = L.icon({
     iconUrl: '/assets/studyspace.png',
     // shadowUrl: 'leaf-shadow.png',
@@ -223,9 +227,9 @@ title: Home
     }
   }
   function handleLayerChange() {
-    tileLayers[tileLayersIndex].removeFrom(map);
-    tileLayersIndex = (tileLayersIndex + 1) % tileLayers.length;
-    tileLayers[tileLayersIndex].addTo(map);
+    tileLayers[parseInt(localStorage.getItem("layerIndex"))].removeFrom(map);
+    localStorage.setItem("layerIndex", (parseInt(localStorage.getItem("layerIndex")) + 1) % tileLayers.length);
+    tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
   }
   function handleTimingChange() {
     if (localStorage.getItem("onlyOpen") == "true") {
@@ -250,8 +254,7 @@ title: Home
   if (localStorage.getItem("onlyOpen") != "true") {
     closedStudySpaces.addTo(map);
   }
-  tileLayersIndex = 0;
-  tileLayers[tileLayersIndex].addTo(map);
+  tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
   L.control.locate().addTo(map);
 
   L.Control.LayerSwap = L.Control.extend({
