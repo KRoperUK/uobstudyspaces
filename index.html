@@ -19,6 +19,10 @@ title: Home
 
   if (localStorage.getItem("onlyOpen") === null) {
     localStorage.setItem("onlyOpen", "true");
+  } else if (localStorage.getItem("onlyOpen") === "true") {
+    document.getElementById("openDisclaimer").innerHTML = "Showing only open study spaces";
+  } else if (localStorage.getItem("onlyOpen") === "false") {
+    document.getElementById("openDisclaimer").innerHTML = "Showing all study spaces";
   }
 
   const studySpaceIcon = L.icon({
@@ -212,12 +216,14 @@ title: Home
         closedStudySpaces.addTo(map);
       }
       document.getElementById("timingA").style.color = "black";
+      document.getElementById("openDisclaimer").innerText = "Showing all study spaces";
     } else {
       localStorage.setItem("onlyOpen", "true");
       if (map.hasLayer(closedStudySpaces)) {
         closedStudySpaces.removeFrom(map);
       }
       document.getElementById("timingA").style.color = "green";
+      document.getElementById("openDisclaimer").innerText = "Showing only open study spaces";
     }
     
   }
