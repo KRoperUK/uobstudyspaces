@@ -109,7 +109,7 @@
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"
-    opening_hours: "Mo-Fr 08:30-16:00; Sa-Su OFF; May 29;" # TODO: Remove May 29 is a bank holiday
+    opening_hours: "Mo-Fr 08:30-16:00; Sa-Su OFF; May 29 OFF;" # TODO: Remove May 29 is a bank holiday
     notes: "Monday 29 May - closed"
     url: "https://intranet.birmingham.ac.uk/as/libraryservices/library/libraries-and-opening-hours/libraries/olrc.aspx"
     coordinates: [52.4342434867683, -1.9476000442124493]
