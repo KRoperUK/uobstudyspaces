@@ -1,7 +1,8 @@
 let locale = navigator.language || navigator.userLanguage;
 let date;
 
-
+const report = browserReportSync();
+const os = report.os.name;
 
 if (localStorage.getItem("onlyOpen") === null) {
 localStorage.setItem("onlyOpen", "true");
@@ -363,9 +364,9 @@ onAdd: function(map) {
     
     return wholeD;
 },
-onRemove: function(map) {
-    // Nothing to do here
-}
+    onRemove: function(map) {
+        // Nothing to do here
+    }
 });
 
 L.control.layerswap = function(opts) {
@@ -414,6 +415,7 @@ document.addEventListener('touchstart', function(event) {
 }, false);
 
 
-handleRefresh();
-L.control.clock({ position: 'topright' }).addTo(map);
-L.control.layerswap({ position: 'topright' }).addTo(map);
+if (os == "iOS" || os == "Android" || os == "Windows Phone" || os == "iPad") {
+    document.getElementById("keys").setAttribute("hidden", true);
+    
+}
