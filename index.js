@@ -376,10 +376,10 @@ L.control.layerswap = function(opts) {
 
 // or, add to an existing map:
 map.addControl(new L.Control.Fullscreen({
-    fullscreenControl: true,}));
+    fullscreenControl: true,}
+));
 
-    
-    document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
     if (key === "f") {
@@ -396,7 +396,7 @@ map.addControl(new L.Control.Fullscreen({
     } else if (reg.test(key)) {
         handleOffset(parseInt(key));
     } 
-    
+
     if (document.activeElement.id != "map") { 
         if (key === "ArrowLeft") {
             handleOffset(-1);
@@ -405,6 +405,15 @@ map.addControl(new L.Control.Fullscreen({
         } 
     }
 });
+
+if ('ontouchstart' in document.documentElement) {
+    // show icon
+    console.log("Touchscreen detected");
+    document.getElementById("keys").setAttribute("hidden", true);
+} else {
+    // show other icon
+    console.log("No touchscreen detected");
+}
 
 handleRefresh();
 L.control.clock({ position: 'topright' }).addTo(map);
