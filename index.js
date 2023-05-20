@@ -373,6 +373,9 @@ L.control.layerswap = function(opts) {
     return new L.Control.LayerSwap(opts);
 }
 
+L.control.clock({ position: 'topright' }).addTo(map);
+L.control.layerswap({ position: 'topright' }).addTo(map);
+
 // Create a new map with a fullscreen button:
 
 // or, add to an existing map:
@@ -413,9 +416,3 @@ document.addEventListener('touchstart', function(event) {
         document.getElementById("keys").setAttribute("hidden", true);
     }
 }, false);
-
-
-if (os == "iOS" || os == "Android" || os == "Windows Phone" || os == "iPad") {
-    document.getElementById("keys").setAttribute("hidden", true);
-    
-}
