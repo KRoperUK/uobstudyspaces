@@ -281,6 +281,10 @@ title: Home
 
   updateMap();
   function handleLayerChange() {
+    if (localStorage.getItem("layerIndex") == null || localStorage.getItem("layerIndex") >= tileLayers) {
+      localStorage.setItem("layerIndex", 0);
+    }
+
     tileLayers[parseInt(localStorage.getItem("layerIndex"))].removeFrom(map);
     localStorage.setItem("layerIndex", (parseInt(localStorage.getItem("layerIndex")) + 1) % tileLayers.length);
     tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
@@ -307,6 +311,9 @@ title: Home
   openStudySpaces.addTo(map);
   if (localStorage.getItem("onlyOpen") != "true") {
     closedStudySpaces.addTo(map);
+  }
+  if (localStorage.getItem("layerIndex") == null || localStorage.getItem("layerIndex") >= tileLayers.length - 1) {
+    localStorage.setItem("layerIndex", 0);
   }
   tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
   L.control.locate().addTo(map);
@@ -339,13 +346,18 @@ title: Home
 
   L.Control.LayerSwap = L.Control.extend({
     onAdd: function(map) {
-        var visitedD = L.DomUtil.create('div');
+        var wholeD = L.DomUtil.create('div');
+        var barOne = L.DomUtil.create('div');
+        var barTwo = L.DomUtil.create('div');
         var layerA = L.DomUtil.create('a');
         var timingA = L.DomUtil.create('a');
         var plusOneA = L.DomUtil.create('a');
         var minusOneA = L.DomUtil.create('a');
+        var refreshA = L.DomUtil.create('a');
 
-        visitedD.className = 'leaflet-bar leaflet-control';
+        barOne.className = 'leaflet-bar leaflet-control';
+        barOne.style.marginTop = '0px';
+        barTwo.className = 'leaflet-bar leaflet-control';
 
         timingA.href="javascript:handleTimingChange()";
         timingA.innerHTML=`<i id="timingA" style="color: ${localStorage.getItem("onlyOpen") == "true" ? "green" : "black"}" class=\"fas fa-clock\"></i>`;
@@ -359,13 +371,19 @@ title: Home
         minusOneA.href="javascript:handleOffset(-1)";
         minusOneA.innerHTML=`<i style="color: black;" class=\"fas fa-minus\"></i> <i id="time" style="color: black;" class=\"fas fa-clock\"></i></i>`;
 
+        refreshA.href="javascript:handleRefresh()";
+        refreshA.innerHTML=`<i style="color: black;" class=\"fas fa-sync-alt\"></i> <i id="time" style="color: black;" class=\"fas fa-clock\"></i></i>`;
 
-        visitedD.appendChild(layerA);
-        visitedD.appendChild(timingA);
-        visitedD.appendChild(plusOneA);
-        visitedD.appendChild(minusOneA);
+        // visitedD.appendChild(layerA);
+        barOne.appendChild(timingA);
+        barTwo.appendChild(plusOneA);
+        barTwo.appendChild(minusOneA);
+        barTwo.appendChild(refreshA); 
+
+        wholeD.appendChild(barOne);
+        wholeD.appendChild(barTwo);
         
-        return visitedD;
+        return wholeD;
     },
     onRemove: function(map) {
         // Nothing to do here
