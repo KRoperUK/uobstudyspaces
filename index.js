@@ -373,8 +373,37 @@ L.control.layerswap = function(opts) {
 // Create a new map with a fullscreen button:
 
 // or, add to an existing map:
-map.addControl(new L.Control.Fullscreen());
+map.addControl(new L.Control.Fullscreen({
+    fullscreenControl: true,}));
 
+    
+    document.addEventListener('keydown', function(event) {
+    const key = event.key; // "a", "1", "Shift", etc.
+    const reg = /^\d+$/;
+    console.log(key);
+    if (key === "f") {
+        map.toggleFullscreen();
+    } else if (key === " " || key === "]") {
+        event.preventDefault();
+        handleOffset(24);
+    } else if (key === "[") {
+        handleOffset(-24);
+    } else if (key === "1") {
+        handleOffset(1);
+    } else if (key === "r") {
+        handleRefresh();
+    } else if (reg.test(key)) {
+        handleOffset(parseInt(key));
+    }
+    
+    if (document.activeElement.id != "map") { 
+        if (key === "ArrowLeft") {
+            handleOffset(-1);
+        } else if (key === "ArrowRight") {
+            handleOffset(1);
+        } 
+    }
+});
 
 handleRefresh();
 L.control.clock({ position: 'topright' }).addTo(map);
