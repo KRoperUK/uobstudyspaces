@@ -406,14 +406,13 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-if ('ontouchstart' in document.documentElement) {
-    // show icon
-    console.log("Touchscreen detected");
-    document.getElementById("keys").setAttribute("hidden", true);
-} else {
-    // show other icon
-    console.log("No touchscreen detected");
-}
+document.addEventListener('touchstart', function(event) {
+    if (!document.getElementById("keys").hasAttribute("hidden")) {
+        console.log("Touchscreen detected");
+        document.getElementById("keys").setAttribute("hidden", true);
+    }
+}, false);
+
 
 handleRefresh();
 L.control.clock({ position: 'topright' }).addTo(map);
