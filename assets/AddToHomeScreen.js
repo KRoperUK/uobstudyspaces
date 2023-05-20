@@ -79,7 +79,6 @@ export default class AddToHomeScreen extends HTMLElement {
     super();
     this.attachShadow({mode: 'open'});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this._closeClick = closeClick.bind(this);
   }
 
   connectedCallback() {
