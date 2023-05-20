@@ -71,7 +71,7 @@ template.innerHTML = `
 <div id="arrowOuter"></div>
 <div id="arrowInner"></div>
 <img id="close" src="data:image/png;base64,${closeBase64}">
-<i id="close" class='fa-solid fa-x'></i>
+<a href="javascript:document.getElementsByTagName('add-to-home-screen')[0].remove();" id="close"><i class='fa-solid fa-x'></i></a>
 `;
 
 export default class AddToHomeScreen extends HTMLElement {
@@ -89,18 +89,10 @@ export default class AddToHomeScreen extends HTMLElement {
     const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
     if (iOSSafari && !navigator.standalone) {
+    // if (true) {
       this.style.display = 'inline-block';
-      this.shadowRoot.getElementById('close').addEventListener('click', this._closeClick);
     }
   }
-
-  disconnectedCallback() {
-    this.shadowRoot.getElementById('close').removeEventListener('click', this._closeClick);
-  }
-}
-
-function closeClick() {
-  this.style.display = 'none';
 }
 
 window.customElements.define('add-to-home-screen', AddToHomeScreen);
