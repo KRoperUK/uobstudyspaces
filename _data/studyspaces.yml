@@ -172,6 +172,12 @@
     spaces: 30
     customicon: "starbucks"
     opening_hours: "Mo-Fr 08:00-17:00; 2023 May 29 off"
+  - name: "Shackleton Lounge"
+    coordinates: [52.4624391, -1.9252209]
+    cafe: true
+    computers: false
+    url: "https://www.birmingham.ac.uk/community/university-campus/retail/food-fellows/the-vale-village/index.aspx"
+    opening_hours: "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00; 2023 May 29 08:00-21:00"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"
