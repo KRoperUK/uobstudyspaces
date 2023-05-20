@@ -135,9 +135,9 @@
     notes: "Open to students living in Mason only"
   - name: "Starbucks - Bournbrook Pavilion"
     coordinates: [52.44737559527004, -1.9335380089429546]
-    opening_hours: "Mo-Sa 08:00-17:00"
+    opening_hours: "Mo-Fr 08:00-17:00"
     cafe: true
-    url: "https://www.starbucks.co.uk/store-locator/store/1029755/bournbrook-pavilion-uni-of-birmingham-birmingham-eng-b15-2tt-gb?types=starbucks&latLng=52.44753%2C-1.9354500000000097&zoom=15&store=51286-263951&storeDetail=51286-263951"
+    url: "https://www.starbucks.com/store-locator/store/1020852/birmingham-university-aston-birmingham-university-birmingham-eng-b-15-2-gg-gb"
     customicon: "starbucks"
   - name: "Dental School"
     coordinates: [52.4502681094861, -1.914451769209546]
