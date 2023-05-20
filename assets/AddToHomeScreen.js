@@ -11,7 +11,7 @@ template.innerHTML = `
   left: 50%;
   transform: translateX(-50%);
   color: #333;
-  z-index: 1001;
+  z-index: 9999;
 }
 
 :host([hidden]) {
