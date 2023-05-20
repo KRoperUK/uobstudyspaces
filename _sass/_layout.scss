@@ -4,8 +4,8 @@
 
 .container {
   max-width: 99%;
-  padding-left: var(--spacer-2);
-  padding-right: var(--spacer-2);
+  padding-left: 1rem; // var(--spacer-2);
+  padding-right: 1rem; // var(--spacer-2);
   margin-left:  auto;
   margin-right: auto;
 }

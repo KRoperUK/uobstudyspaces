@@ -21,6 +21,8 @@ title: Home
   </ul>
 </div>
 
+
+
 <script>
   let locale = navigator.language || navigator.userLanguage;
   let date;
@@ -316,7 +318,7 @@ title: Home
     localStorage.setItem("layerIndex", 0);
   }
   tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
-  L.control.locate().addTo(map);
+  L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
 
   L.Control.Clock = L.Control.extend({
     onAdd: function(map) {
