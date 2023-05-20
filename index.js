@@ -373,6 +373,7 @@ L.control.layerswap = function(opts) {
     return new L.Control.LayerSwap(opts);
 }
 
+handleRefresh();
 L.control.clock({ position: 'topright' }).addTo(map);
 L.control.layerswap({ position: 'topright' }).addTo(map);
 
