@@ -1,5 +1,5 @@
 let locale = navigator.language || navigator.userLanguage;
-let date;
+let date = new Date();
 
 const report = browserReportSync();
 const os = report.os.name;
@@ -235,25 +235,25 @@ for (let campus in spaces) {
 }
 }
 function handleRefresh() {
-openStudySpaces.clearLayers();
-closedStudySpaces.clearLayers();
-date = new Date();
-document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
-if (document.getElementById("mapClockSpan")){
-    document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
-}
-console.log("Refreshed", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
-updateMap();
+    openStudySpaces.clearLayers();
+    closedStudySpaces.clearLayers();
+
+    document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
+    if (document.getElementById("mapClockSpan")){
+        document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+    }
+    console.log("Refreshed", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
+    updateMap();
 }
 
 function handleOffset(hourOffset) {
-openStudySpaces.clearLayers();
-closedStudySpaces.clearLayers();
-date.setHours(date.getHours() + hourOffset);
-document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
-document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
-console.log("Offset", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
-updateMap();
+    openStudySpaces.clearLayers();
+    closedStudySpaces.clearLayers();
+    date.setHours(date.getHours() + hourOffset);
+    document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
+    document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+    console.log("Offset", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
+    updateMap();
 }
 
 updateMap();
@@ -298,23 +298,23 @@ tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
 L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
 
 L.Control.Clock = L.Control.extend({
-onAdd: function(map) {
-    var clockD = L.DomUtil.create('div');
-    clockD.id = "mapClock";
-    clockD.className = 'leaflet-bar leaflet-control';
-    clockD.style.backgroundColor = 'white';
-    
-    var clockS = L.DomUtil.create('span');
-    clockS.id = "mapClockSpan";
-    clockS.innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
-    clockS.style.color = 'black';
-    clockS.style.fontWeight = 'bold';
-    clockS.style.fontSize = '2rem';
-    clockS.style.padding = '0px 5px 0px 5px';
+    onAdd: function(map) {
+        var clockD = L.DomUtil.create('div');
+        clockD.id = "mapClock";
+        clockD.className = 'leaflet-bar leaflet-control';
+        clockD.style.backgroundColor = 'white';
+        
+        var clockS = L.DomUtil.create('span');
+        clockS.id = "mapClockSpan";
+        clockS.innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+        clockS.style.color = 'black';
+        clockS.style.fontWeight = 'bold';
+        clockS.style.fontSize = '2rem';
+        clockS.style.padding = '0px 5px 0px 5px';
 
-    clockD.appendChild(clockS);
-    return clockD;
-}
+        clockD.appendChild(clockS);
+        return clockD;
+    }
 });
 
 L.control.clock = function(opts) {
