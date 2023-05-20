@@ -273,6 +273,7 @@ if (localStorage.getItem("onlyOpen") == "true") {
     }
     document.getElementById("timingA").style.color = "black";
     document.getElementById("openDisclaimer").innerText = "Showing all study spaces";
+    console.log("Showing all study spaces");
 } else {
     localStorage.setItem("onlyOpen", "true");
     if (map.hasLayer(closedStudySpaces)) {
@@ -280,6 +281,7 @@ if (localStorage.getItem("onlyOpen") == "true") {
     }
     document.getElementById("timingA").style.color = "green";
     document.getElementById("openDisclaimer").innerText = "Showing only open study spaces";
+    console.log("Showing only open study spaces");
 }
 
 }
@@ -380,21 +382,20 @@ map.addControl(new L.Control.Fullscreen({
     document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
-    console.log(key);
     if (key === "f") {
         map.toggleFullscreen();
     } else if (key === " " || key === "]") {
         event.preventDefault();
         handleOffset(24);
+    } else if (key === "h") {
+        handleTimingChange();
     } else if (key === "[") {
         handleOffset(-24);
-    } else if (key === "1") {
-        handleOffset(1);
     } else if (key === "r") {
         handleRefresh();
     } else if (reg.test(key)) {
         handleOffset(parseInt(key));
-    }
+    } 
     
     if (document.activeElement.id != "map") { 
         if (key === "ArrowLeft") {
