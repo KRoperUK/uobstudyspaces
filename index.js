@@ -238,6 +238,8 @@ function handleRefresh() {
     openStudySpaces.clearLayers();
     closedStudySpaces.clearLayers();
 
+    date = new Date();
+
     document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
     if (document.getElementById("mapClockSpan")){
         document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
