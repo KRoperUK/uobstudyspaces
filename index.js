@@ -234,15 +234,13 @@ for (let campus in spaces) {
     }
 }
 }
-function handleRefresh() {
+function handleRefresh(date = new Date()) {
     openStudySpaces.clearLayers();
     closedStudySpaces.clearLayers();
 
-    date = new Date();
-
     document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
     if (document.getElementById("mapClockSpan")){
-        document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+        document.getElementById("mapClockText").innerText = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
     }
     console.log("Refreshed", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
     updateMap();
@@ -253,7 +251,7 @@ function handleOffset(hourOffset) {
     closedStudySpaces.clearLayers();
     date.setHours(date.getHours() + hourOffset);
     document.getElementById("time").innerHTML = date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}) + "&nbsp;<i class='fas fa-sync-alt'></i>";
-    document.getElementById("mapClockSpan").innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+    document.getElementById("mapClockText").innerText = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
     console.log("Offset", date.toLocaleTimeString(locale, {weekday:"long", day: "2-digit", month: "long", year: "numeric",hour: '2-digit', minute:'2-digit'}));
     updateMap();
 }
@@ -297,7 +295,21 @@ if (localStorage.getItem("layerIndex") == null || localStorage.getItem("layerInd
 localStorage.setItem("layerIndex", 0);
 }
 tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
+
+function handleDateModal() {
+    document.getElementById("dateDialog").show();
+
+    prevDate = new Date(new Date().setDate(date.getDate()-7));
+    futureDate = new Date(new Date().setDate(date.getDate()+14));
+
+    document.getElementById("dateInputDate").min = prevDate.toISOString().substring(0,10);
+    document.getElementById("dateInputDate").max = futureDate.toISOString().substring(0,10);
+    document.getElementById("dateInputTime").value = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+    document.getElementById("dateInputDate").value = date.toISOString().substring(0,10);
+}
+
 L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
+
 
 L.Control.Clock = L.Control.extend({
     onAdd: function(map) {
@@ -308,8 +320,7 @@ L.Control.Clock = L.Control.extend({
         
         var clockS = L.DomUtil.create('span');
         clockS.id = "mapClockSpan";
-        clockS.innerHTML = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
-        clockS.style.color = 'black';
+        clockS.innerHTML = "<a style='display: inherit; color: var(--link-color);' href=javascript:handleDateModal(); id='mapClockText'>" + date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'}) + "</a>";
         clockS.style.fontWeight = 'bold';
         clockS.style.fontSize = '2rem';
         clockS.style.padding = '0px 5px 0px 5px';
@@ -389,7 +400,18 @@ map.addControl(new L.Control.Fullscreen({
 document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
-    if (key === "f") {
+    
+    if (document.activeElement.id != "map") { 
+        if (key === "ArrowLeft") {
+            handleOffset(-1);
+        } else if (key === "ArrowRight") {
+            handleOffset(1);
+        } 
+    } else if (document.getElementById("dateDialog").hasAttribute("open")) {
+        event.preventDefault();
+        return;
+    }
+    else if (key === "f") {
         map.toggleFullscreen();
     } else if (key === " " || key === "]") {
         event.preventDefault();
@@ -404,13 +426,6 @@ document.addEventListener('keydown', function(event) {
         handleOffset(parseInt(key));
     } 
 
-    if (document.activeElement.id != "map") { 
-        if (key === "ArrowLeft") {
-            handleOffset(-1);
-        } else if (key === "ArrowRight") {
-            handleOffset(1);
-        } 
-    }
 });
 
 document.addEventListener('touchstart', function(event) {
@@ -419,3 +434,13 @@ document.addEventListener('touchstart', function(event) {
         document.getElementById("keys").setAttribute("hidden", true);
     }
 }, false);
+
+document.getElementById("dateInputDate").addEventListener('change', function(event) {
+    date = new Date(document.getElementById("dateInputDate").value + "T" + document.getElementById("dateInputTime").value);
+    handleRefresh(date);
+});
+
+document.getElementById("dateInputTime").addEventListener('change', function(event) {
+    date = new Date(document.getElementById("dateInputDate").value + "T" + document.getElementById("dateInputTime").value);
+    handleRefresh(date);
+});

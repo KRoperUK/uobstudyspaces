@@ -6,8 +6,8 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+dialog,body {
+  margin-left: auto;
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);

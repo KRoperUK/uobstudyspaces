@@ -7,6 +7,15 @@ title: Home
 
 <add-to-home-screen></add-to-home-screen>
 
+<dialog id="dateDialog" style="z-index: 20000; border-radius: 0.5rem;">
+  <p style="font-weight: bold; margin-bottom: auto;">Change date and time</p>
+  <form method="dialog">
+    <input type="date" id="dateInputDate" />
+    <input type="time" id="dateInputTime" min="00:00" max="23:59"/>
+  </form>
+  <a href="javascript:document.getElementById('dateDialog').close();"><button id="dateDialogCancel">Close</button></a>
+</dialog>
+
 <div id="map" style="height: 60vh; border-radius: 0.5rem;">
   
 </div>

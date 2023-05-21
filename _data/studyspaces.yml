@@ -31,7 +31,7 @@
     spaces: 80
     cafe: true
     computers: true
-    opening_hours: "Mo-Fr 08:00-21:00; Tu,Th 08:00-22:00; Sa,Su 10:00-20:00; SH Mo-Fr 09:00-17:00; SH Sa-Su off; 2023 May 29 off"
+    opening_hours: "Mo-Fr 08:00-21:00; Tu,Th 08:00-22:00; Sa,Su 10:00-20:00; 2023 May 29 off" # SH Mo-Fr 09:00-17:00; SH Sa-Su off;
     url: "https://www.guildofstudents.com/contact-us/"
   - name: "Computer Science Building - Sloman Lounge"
     coordinates: [52.450129553930445, -1.9358595683889959]
