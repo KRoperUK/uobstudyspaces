@@ -381,6 +381,12 @@ onAdd: function(map) {
 
     // wholeD.appendChild(barOne);
     wholeD.appendChild(barTwo);
+    wholeD.addEventListener('mouseover', function() {
+        mouseHoverMapButtons = true;
+    });
+    wholeD.addEventListener('mouseout', function() {
+        mouseHoverMapButtons = false;
+    });
     
     return wholeD;
 },
@@ -452,3 +458,16 @@ document.getElementById("dateInputTime").addEventListener('change', function(eve
     date = new Date(document.getElementById("dateInputDate").value + "T" + document.getElementById("dateInputTime").value);
     handleRefresh(date);
 });
+
+map.doubleClickZoom.disable();
+map.on('dblclick', function(event){
+    zoom = map.getZoom();
+    console.log("Double Click");
+    
+    if (!mouseHoverMapButtons) {
+        map.zoomIn();
+    }
+    // map.zoomIn();
+});
+
+mouseHoverMapButtons = false;
