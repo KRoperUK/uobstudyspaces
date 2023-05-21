@@ -299,8 +299,8 @@ tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
 function handleDateModal() {
     document.getElementById("dateDialog").show();
 
-    prevDate = new Date(new Date().setDate(date.getDate()-7));
-    futureDate = new Date(new Date().setDate(date.getDate()+14));
+    var prevDate = new Date(new Date().setDate(date.getDate()-7));
+    var futureDate = new Date(new Date().setDate(date.getDate()+14));
 
     document.getElementById("dateInputDate").min = prevDate.toISOString().substring(0,10);
     document.getElementById("dateInputDate").max = futureDate.toISOString().substring(0,10);
