@@ -305,7 +305,7 @@ function handleDateModal() {
     document.getElementById("dateInputDate").min = prevDate.toISOString().substring(0,10);
     document.getElementById("dateInputDate").max = futureDate.toISOString().substring(0,10);
     document.getElementById("dateInputTime").value = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
-    document.getElementById("dateInputDate").value = date.toISOString().substring(0,10);
+    document.getElementById("dateInputDate").defaultValue = date.toISOString().substring(0,10);
 }
 
 L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
