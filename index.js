@@ -234,7 +234,10 @@ for (let campus in spaces) {
     }
 }
 }
-function handleRefresh(date = new Date()) {
+function handleRefresh(dateI = null) {
+    if (dateI == null) {
+        date = new Date();
+    }
     openStudySpaces.clearLayers();
     closedStudySpaces.clearLayers();
 
@@ -297,6 +300,10 @@ localStorage.setItem("layerIndex", 0);
 tileLayers[parseInt(localStorage.getItem("layerIndex"))].addTo(map);
 
 function handleDateModal() {
+    if (map.isFullscreen()) {
+        map.toggleFullscreen();
+    }
+
     document.getElementById("dateDialog").show();
 
     var prevDate = new Date(new Date().setDate(date.getDate()-7));
@@ -339,7 +346,7 @@ return new L.Control.Clock(opts);
 L.Control.LayerSwap = L.Control.extend({
 onAdd: function(map) {
     var wholeD = L.DomUtil.create('div');
-    var barOne = L.DomUtil.create('div');
+    // var barOne = L.DomUtil.create('div');
     var barTwo = L.DomUtil.create('div');
     // var layerA = L.DomUtil.create('a');
     var timingA = L.DomUtil.create('a');
@@ -347,12 +354,12 @@ onAdd: function(map) {
     var minusOneA = L.DomUtil.create('a');
     var refreshA = L.DomUtil.create('a');
 
-    barOne.className = 'leaflet-bar leaflet-control';
-    barOne.style.marginTop = '0px';
+    // barOne.className = 'leaflet-bar leaflet-control';
+    // barOne.style.marginTop = '0px';
     barTwo.className = 'leaflet-bar leaflet-control';
 
-    timingA.href="javascript:handleTimingChange()";
-    timingA.innerHTML=`<i id="timingA" style="color: ${localStorage.getItem("onlyOpen") == "true" ? "green" : "black"}" class=\"fas fa-clock\"></i>`;
+    // timingA.href="javascript:handleTimingChange()";
+    // timingA.innerHTML=`<i id="timingA" style="color: ${localStorage.getItem("onlyOpen") == "true" ? "green" : "black"}" class=\"fas fa-clock\"></i>`;
 
     // layerA.href="javascript:handleLayerChange()";
     // layerA.innerHTML=`<i style="color: black;" class=\"fas fa-map\"></i>`;
@@ -367,12 +374,12 @@ onAdd: function(map) {
     refreshA.innerHTML=`<i style="color: black;" class=\"fas fa-sync-alt\"></i> <i id="time" style="color: black;" class=\"fas fa-clock\"></i></i>`;
 
     // visitedD.appendChild(layerA);
-    barOne.appendChild(timingA);
+    // barOne.appendChild(timingA);
     barTwo.appendChild(plusOneA);
     barTwo.appendChild(minusOneA);
     barTwo.appendChild(refreshA); 
 
-    wholeD.appendChild(barOne);
+    // wholeD.appendChild(barOne);
     wholeD.appendChild(barTwo);
     
     return wholeD;
@@ -407,7 +414,8 @@ document.addEventListener('keydown', function(event) {
         } else if (key === "ArrowRight") {
             handleOffset(1);
         } 
-    } else if (document.getElementById("dateDialog").hasAttribute("open")) {
+    }
+     if (document.getElementById("dateDialog").hasAttribute("open")) {
         event.preventDefault();
         return;
     }
