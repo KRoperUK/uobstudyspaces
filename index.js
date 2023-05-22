@@ -421,9 +421,14 @@ L.control.layerswap({ position: 'topright' }).addTo(map);
 document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
-    // console.log(`Pressed ${key} on ${document.activeElement.id} [${document.activeElement.className}`);
-    
-    if (document.getElementById("dateDialog").hasAttribute("open")) {
+    // console.log(`Pressed ${key}`);
+    if (key === "Escape") {
+        if (document.getElementById("dateDialog").hasAttribute("open")) {
+            document.getElementById("dateDialog").close();
+        }
+        map.closePopup();
+        return;
+    } else if (document.getElementById("dateDialog").hasAttribute("open")) {
         // event.preventDefault();
         if (key === "Enter") {
             document.getElementById("dateDialog").close();
