@@ -20,7 +20,7 @@ const studySpaceIcon = L.icon({
 iconUrl: '/assets/studyspace.png',
 // shadowUrl: 'leaf-shadow.png',
 
-iconSize:     [32, 32], // size of the icon
+iconSize:     [screen.width / 45, screen.width / 45], // size of the icon
 // shadowSize:   [50, 64], // size of the shadow
 iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
 // shadowAnchor: [4, 62],  // the same for the shadow
@@ -419,6 +419,9 @@ document.addEventListener('keydown', function(event) {
     
     if (document.getElementById("dateDialog").hasAttribute("open")) {
         // event.preventDefault();
+        if (key === "Enter") {
+            document.getElementById("dateDialog").close();
+        }
         return;
     } else if (document.activeElement.id != "map") { 
         if (key === "ArrowLeft") {
