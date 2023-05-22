@@ -276,7 +276,10 @@ if (localStorage.getItem("onlyOpen") == "true") {
     if (!map.hasLayer(closedStudySpaces)) {
     closedStudySpaces.addTo(map);
     }
-    document.getElementById("timingA").style.color = "black";
+    if (document.getElementById("timingA")) {
+        document.getElementById("timingA").style.color = "black";
+
+    }
     document.getElementById("openDisclaimer").innerText = "Showing all study spaces";
     console.log("Showing all study spaces");
 } else {
@@ -284,7 +287,10 @@ if (localStorage.getItem("onlyOpen") == "true") {
     if (map.hasLayer(closedStudySpaces)) {
     closedStudySpaces.removeFrom(map);
     }
-    document.getElementById("timingA").style.color = "green";
+    if (document.getElementById("timingA")) {
+        document.getElementById("timingA").style.color = "green";
+
+    }
     document.getElementById("openDisclaimer").innerText = "Showing only open study spaces";
     console.log("Showing only open study spaces");
 }
@@ -347,7 +353,7 @@ onAdd: function(map) {
     // var barOne = L.DomUtil.create('div');
     var barTwo = L.DomUtil.create('div');
     // var layerA = L.DomUtil.create('a');
-    var timingA = L.DomUtil.create('a');
+    // var timingA = L.DomUtil.create('a');
     var plusOneA = L.DomUtil.create('a');
     var minusOneA = L.DomUtil.create('a');
     var refreshA = L.DomUtil.create('a');
