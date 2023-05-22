@@ -87,8 +87,8 @@ export default class AddToHomeScreen extends HTMLElement {
     const webkit = !!ua.match(/WebKit/i);
     const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
-    // if (iOSSafari && !navigator.standalone) {
-    if (true) {
+    if (iOSSafari && !navigator.standalone) {
+    // if (true) {
       this.style.display = 'inline-block';
     }
   }
