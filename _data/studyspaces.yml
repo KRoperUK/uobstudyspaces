@@ -40,7 +40,8 @@
     vending_machines: true
     computers: true
     customicon: "otherStudy"
-    opening_hours: "Mo-Fr 08:00-18:00; 2023 May 29 off"
+    opening_hours: "Mo-Fr 09:00-23:00; Sa-Su 09:00-17:00; 2023 May 29 off"
+    notes: "24/7 for PhD and staff; keycard access sometimes required"
   - name: "Murray Learning Centre"
     coordinates: [52.45068567347343, -1.9356770692989167]
     spaces: 434
