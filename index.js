@@ -276,7 +276,7 @@ if (localStorage.getItem("onlyOpen") == "true") {
     if (!map.hasLayer(closedStudySpaces)) {
     closedStudySpaces.addTo(map);
     }
-    if (document.getElementById("timingA")) {
+    if (document.getElementById("timingA") != null) {
         document.getElementById("timingA").style.color = "black";
 
     }
@@ -287,7 +287,7 @@ if (localStorage.getItem("onlyOpen") == "true") {
     if (map.hasLayer(closedStudySpaces)) {
     closedStudySpaces.removeFrom(map);
     }
-    if (document.getElementById("timingA")) {
+    if (document.getElementById("timingA") != null) {
         document.getElementById("timingA").style.color = "green";
 
     }
