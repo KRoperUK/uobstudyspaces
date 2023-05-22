@@ -415,17 +415,17 @@ L.control.layerswap({ position: 'topright' }).addTo(map);
 document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
+    // console.log(`Pressed ${key} on ${document.activeElement.id} [${document.activeElement.className}`);
     
-    if (document.activeElement.id != "map") { 
+    if (document.getElementById("dateDialog").hasAttribute("open")) {
+        // event.preventDefault();
+        return;
+    } else if (document.activeElement.id != "map") { 
         if (key === "ArrowLeft") {
             handleOffset(-1);
         } else if (key === "ArrowRight") {
             handleOffset(1);
         } 
-    }
-     if (document.getElementById("dateDialog").hasAttribute("open")) {
-        event.preventDefault();
-        return;
     }
     else if (key === "f") {
         map.toggleFullscreen();

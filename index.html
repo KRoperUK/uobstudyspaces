@@ -7,9 +7,9 @@ title: Home
 
 <add-to-home-screen></add-to-home-screen>
 
-<dialog id="dateDialog" style="z-index: 20000; border-radius: 0.5rem;">
-  <p style="font-weight: bold; margin-bottom: auto;">Change date and time</p>
-  <form method="dialog">
+<dialog id="dateDialog" role="dialog" style="z-index: 20000; border-radius: 0.5rem;">
+  <p style="font-weight: bold; margin-bottom: auto;" id="dateDialogText">Change date and time</p>
+  <form method="dialog" id="dateDialogForm">
     <input type="date" id="dateInputDate" />
     <input type="time" id="dateInputTime" min="00:00" max="23:59"/>
   </form>
