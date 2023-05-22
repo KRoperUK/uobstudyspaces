@@ -71,6 +71,7 @@ popupAnchor:  [0,-16] // point from which the popup should open relative to the 
 });
 
 var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
+map.options.minZoom = 16;
 
 tileLayers.push(OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
@@ -93,12 +94,12 @@ Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alida
 
 tileLayers.push(
 DarkGreyBase = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    maxZoom: 20,
+    maxZoom: 16,
 })
 );
 tileLayers.push(
 LightGreyBase = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    maxZoom: 20,
+    maxZoom: 16,
 })
 );
 tileLayers.push(
@@ -315,9 +316,6 @@ function handleDateModal() {
     document.getElementById("dateInputDate").defaultValue = date.toISOString().substring(0,10);
 }
 
-L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
-
-
 L.Control.Clock = L.Control.extend({
     onAdd: function(map) {
         var clockD = L.DomUtil.create('div');
@@ -400,15 +398,19 @@ L.control.layerswap = function(opts) {
 }
 
 handleRefresh();
-L.control.clock({ position: 'topright' }).addTo(map);
-L.control.layerswap({ position: 'topright' }).addTo(map);
+L.control.clock({ position: 'topleft' }).addTo(map);
+map.zoomControl.setPosition('topleft');
+L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
+
 
 // Create a new map with a fullscreen button:
 
 // or, add to an existing map:
 map.addControl(new L.Control.Fullscreen({
-    fullscreenControl: true,}
-));
+    fullscreenControl: true,
+    position: "bottomleft",}
+    ));
+L.control.layerswap({ position: 'topright' }).addTo(map);
 
 document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
