@@ -71,7 +71,7 @@ popupAnchor:  [0,-16] // point from which the popup should open relative to the 
 });
 
 var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
-map.options.minZoom = 16;
+map.options.minZoom = 15;
 
 tileLayers.push(OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
