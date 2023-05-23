@@ -175,11 +175,11 @@ for (let campus in spaces) {
         if (building.opening_hours) {
         markerListOpeningHours = L.DomUtil.create('li');
         markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
-        markerList.appendChild(markerListOpeningHours);
         
         let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
+        const state = oh.getState(date)
         
-        if (oh.getState(date)) {
+        if (state) {
             markerListOpeningHours.innerHTML += " (Open)";
             markerListOpeningHours.style.color = "green";
             hoursFlag = true;
@@ -187,7 +187,34 @@ for (let campus in spaces) {
             markerListOpeningHours.innerHTML += " (Closed)";
             markerListOpeningHours.style.color = "red";
         }
+        
+        markerListOpeningHoursHint = L.DomUtil.create('li');
+        markerList.appendChild(markerListOpeningHours);
 
+        if (oh.getNextChange(date) > date) {
+            var minutes = Math.floor((oh.getNextChange(date) - date) / 1000 / 60);
+            var hours = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60);
+            var days = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60 / 24);
+
+            if (days <= 1) {
+                if (hours >= 1){
+                    markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${hours} hour${hours > 1 ? "s" : ""}`;
+                } else {
+                    if (minutes >= 1) {
+                        console.log(building.name, minutes);
+                        markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${minutes} minute${minutes > 1 ? "s" : ""}`;
+                    } else {
+                        markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in less than a minute`;
+                    }
+                }
+            } else {
+                markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${days} day${days > 1 ? "s" : ""}`;
+            }
+            markerListOpeningHoursHint.style.color = (state ? "red": "green" );
+            markerList.appendChild(markerListOpeningHoursHint);
+            
+        }
+        
         // console.log(oh.getWarnings());
         
         }
