@@ -71,6 +71,10 @@ popupAnchor:  [0,-16] // point from which the popup should open relative to the 
 });
 
 var map = L.map('map').setView([52.45072845817002, -1.9305795352004038], 16);
+map.doubleTapDragZoom = true;
+map.doubleTapDragZoomOptions = {
+    reverse: false,
+  }
 map.options.minZoom = 15;
 
 tileLayers.push(OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -450,11 +454,17 @@ document.addEventListener('keydown', function(event) {
         handleTimingChange();
     } else if (key === "[") {
         handleOffset(-24);
-    } else if (key === "r") {
+    }
+    if (key === "r") {
         handleRefresh();
     } else if (reg.test(key)) {
         handleOffset(parseInt(key));
     } 
+
+    if (key === "d") {
+        document.getElementById("dateDialog").show();
+        document.getElementById("dateInputDate").focus();
+    }
 
 });
 
@@ -478,8 +488,13 @@ document.getElementById("dateInputTime").addEventListener('change', function(eve
 map.doubleClickZoom.disable();
 map.on('dblclick', function(event){
     zoom = map.getZoom();
-    console.log("Double Click");
+    console.log("Double Click", event.latlng);
+
+    map.options.minZoom = 1;
+    map.options.maxZoom = 20;
+    map.flyTo([event.latlng.lng,event.latlng.lat], zoom, {animate: true, duration: 1.5});
     
+    // map.setView(event.latlng, 11, { animation: true });     
     if (!mouseHoverMapButtons) {
         map.zoomIn();
     }
