@@ -179,6 +179,20 @@
     computers: false
     url: "https://www.birmingham.ac.uk/community/university-campus/retail/food-fellows/the-vale-village/index.aspx"
     opening_hours: "Mo-Fr 08:00-21:00; Sa-Su 09:00-21:00; 2023 May 29 08:00-21:00"
+  - name: "200 Degrees - Lower Temple St"
+    coordinates: [52.47891341179517, -1.8994206819607586]
+    cafe: true
+    spaces: 50
+    customicon: "200deg"
+    opening_hours: "Mo-Fr 07:30-19:00; Sa 08:30-19:00; Su 10:00-18:00"
+    url: "https://200degs.com/pages/birmingham-lower-temple-street"
+  - name: "200 Degrees - Colmore Row"
+    coordinates: [52.48209350763963, -1.898622369162095]
+    cafe: true
+    spaces: 50
+    customicon: "200deg"
+    opening_hours: "Mo-Fr 07:00-20:00; Sa 08:00-19:00; Su 09:00-18:00"
+    url: "https://200degs.com/pages/location-birmingham-colmore-row"
 
 "Selly Oak":
   - name: "Orchard Learning Resource Centre"

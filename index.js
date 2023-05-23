@@ -42,6 +42,15 @@ iconAnchor:   [16, 16], // point of the icon which will correspond to marker's l
 popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
 });
 
+customIcons["200deg"] = L.icon({
+    iconUrl: '/assets/200-degree.png',
+    iconSize:     [32, 32], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0,-16] // point from which the popup should open relative to the iconAnchor
+});
+
 customIcons["costa"] = L.icon ({
 iconUrl: '/assets/costa.png',
 iconSize:     [32, 32], // size of the icon
