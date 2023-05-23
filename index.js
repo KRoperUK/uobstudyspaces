@@ -419,7 +419,7 @@ L.control.layerswap = function(opts) {
 handleRefresh();
 L.control.clock({ position: 'topleft' }).addTo(map);
 map.zoomControl.setPosition('topleft');
-L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
+var lc = L.control.locate({onLocationError: function () { console.log("Location Denied"); }}).addTo(map);
 
 
 // Create a new map with a fullscreen button:
@@ -435,6 +435,11 @@ document.addEventListener('keydown', function(event) {
     const key = event.key; // "a", "1", "Shift", etc.
     const reg = /^\d+$/;
     // console.log(`Pressed ${key}`);
+
+    if (key === "c") {
+        lc.start();
+        return;
+    }
     if (key === "Escape") {
         if (document.getElementById("dateDialog").hasAttribute("open")) {
             document.getElementById("dateDialog").close();
