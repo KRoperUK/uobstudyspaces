@@ -118,7 +118,11 @@
     coordinates: [52.450292492265554, -1.92772392212454]
     opening_hours: "Mo-Th 10:00-17:00; Fr 10:00-12:45,14:15-17:00; Sa-Su off; PH off; 2023 May 29 off"
     notes: "Closed on Bank Holidays and University closed days."
-    
+  - name: "Old Engineering Building"
+    coordinates: [52.44941379157032, -1.9337591247363615]
+    spaces: 60
+    opening_hours: "Mo-Fr 08:00-19:00; 2023 May 29 off"
+    computers: true
 
 
 "Other":
