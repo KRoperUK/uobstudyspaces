@@ -502,11 +502,8 @@ document.getElementById("dateInputTime").addEventListener('change', function(eve
 map.doubleClickZoom.disable();
 map.on('dblclick', function(event){
     zoom = map.getZoom();
-    console.log("Double Click", event.latlng);
 
-    map.options.minZoom = 1;
-    map.options.maxZoom = 20;
-    map.flyTo([event.latlng.lng,event.latlng.lat], zoom, {animate: true, duration: 1.5});
+    map.flyTo([event.latlng.lat,event.latlng.lng], zoom, {animate: true, duration: 0.2});
     
     // map.setView(event.latlng, 11, { animation: true });     
     if (!mouseHoverMapButtons) {
