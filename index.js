@@ -244,6 +244,12 @@ for (let campus in spaces) {
             markerList.appendChild(markerListUSBC);
         }
 
+        if (building.adjustable_desks) {
+            markerListAdjustable = L.DomUtil.create('li');
+            markerListAdjustable.innerHTML = `Has adjustable desks`;
+            markerList.appendChild(markerListAdjustable);
+        }
+
         if (building.vending_machines) {
             markerListVending = L.DomUtil.create('li');
             markerListVending.innerHTML = `Has vending machines`;

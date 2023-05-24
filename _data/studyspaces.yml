@@ -7,6 +7,8 @@
     spaces: 2000
     computers: true
     vending_machines: true
+    adjustable_desks: true
+    usbc: true
     opening_hours: "Mo-Su 00:00-24:00"
     quiet: true
     group: true
@@ -108,6 +110,7 @@
     spaces: 33
     quiet: true
     computers: false
+    adjustable_desks: true
     usbc: true
     opening_hours: "Mo-Fr 08:00-20:00; 2023 May 29 off"
   - name: "Aston Webb C Block Student Study Zone"
