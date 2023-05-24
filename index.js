@@ -233,14 +233,14 @@ for (let campus in spaces) {
         }
 
         if (building.cafe) {
-        markerListCafe = L.DomUtil.create('li');
-        markerListCafe.innerHTML = `Has a cafe`;
-        markerList.appendChild(markerListCafe);
+            markerListCafe = L.DomUtil.create('li');
+            markerListCafe.innerHTML = `Has a cafe`;
+            markerList.appendChild(markerListCafe);
         }
 
         if (building.usbc) {
             markerListUSBC = L.DomUtil.create('li');
-            markerListUSBC.innerHTML = `Has USB-C ports in chargers`;
+            markerListUSBC.innerHTML = `Has USB-C port chargers`;
             markerList.appendChild(markerListUSBC);
         }
 
