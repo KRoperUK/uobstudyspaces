@@ -135,6 +135,16 @@
     url: "https://www.birmingham.ac.uk/schools/engineering/about/new-building.aspx"
     coordinates: [52.45011894385514, -1.9350660817615881]
     opening_hours: "Mo-Fr 08:00-22:00; Sa-Su 10:00-18:00; 2023 May 29 off"
+  - name: "Business School - G01"
+    coordinates: [52.449899182846224, -1.9248501314942592] # TODO - double check opening times
+    spaces: 50
+    computers: true
+    cafe: true
+    usbc: true
+    group: true
+    vending_machines: true
+    opening_hours: "Mo-Fr 08:00-19:00; 2023 May 29 off"
+    notes: "Opening times may not be accurate."
 
 
 "Other":
