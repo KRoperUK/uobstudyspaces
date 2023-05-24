@@ -145,77 +145,78 @@ for (let campus in spaces) {
 
         
         markerHeadingText = L.DomUtil.create('small');
+
         if (building.url) {
-        markerHeadingText.innerHTML = `<a style="text-decoration: none;" href="${building.url}">` + building.name + `</a>`;
-        } else {
-        markerHeadingText.innerHTML = building.name;
-        }
+            markerHeadingText.innerHTML = `<a style="text-decoration: none;" href="${building.url}">` + building.name + `</a>`;
+            } else {
+            markerHeadingText.innerHTML = building.name;
+            }
 
-        markerHeadingDirectionsA = L.DomUtil.create('a');
-        markerHeadingDirectionsA.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
-        markerHeadingDirectionsA.style.textDecoration = "none";
+            markerHeadingDirectionsA = L.DomUtil.create('a');
+            markerHeadingDirectionsA.href = `https://www.google.com/maps/dir/?api=1&destination=${building.coordinates[0]},${building.coordinates[1]}&travelmode=walking`;
+            markerHeadingDirectionsA.style.textDecoration = "none";
 
-        markerHeadingDirectionsIcon = L.DomUtil.create('i');
-        markerHeadingDirectionsIcon.style.marginLeft = "0.5em";
-        markerHeadingDirectionsIcon.style.fontSize = "16px";
-        markerHeadingDirectionsIcon.style.color = "black";
-        markerHeadingDirectionsIcon.className = "fas fa-directions";
-        markerHeadingDirectionsIcon.style.cursor = "pointer";
-        markerHeadingDirectionsA.appendChild(markerHeadingDirectionsIcon);
+            markerHeadingDirectionsIcon = L.DomUtil.create('i');
+            markerHeadingDirectionsIcon.style.marginLeft = "0.5em";
+            markerHeadingDirectionsIcon.style.fontSize = "16px";
+            markerHeadingDirectionsIcon.style.color = "black";
+            markerHeadingDirectionsIcon.className = "fas fa-directions";
+            markerHeadingDirectionsIcon.style.cursor = "pointer";
+            markerHeadingDirectionsA.appendChild(markerHeadingDirectionsIcon);
 
-        markerHeading.appendChild(markerHeadingText);
-        markerHeading.appendChild(markerHeadingDirectionsA);
+            markerHeading.appendChild(markerHeadingText);
+            markerHeading.appendChild(markerHeadingDirectionsA);
 
-        markerPopup.appendChild(markerHeading);
+            markerPopup.appendChild(markerHeading);
 
-        markerList = L.DomUtil.create('ul');
-        markerList.style.marginTop = 0;
-        markerList.style.marginBottom = 0;
+            markerList = L.DomUtil.create('ul');
+            markerList.style.marginTop = 0;
+            markerList.style.marginBottom = 0;
 
         if (building.opening_hours) {
-        markerListOpeningHours = L.DomUtil.create('li');
-        markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
-        
-        let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
-        const state = oh.getState(date)
-        
-        if (state) {
-            markerListOpeningHours.innerHTML += " (Open)";
-            markerListOpeningHours.style.color = "green";
-            hoursFlag = true;
-        } else {
-            markerListOpeningHours.innerHTML += " (Closed)";
-            markerListOpeningHours.style.color = "red";
-        }
-        
-        markerListOpeningHoursHint = L.DomUtil.create('li');
-        markerList.appendChild(markerListOpeningHours);
-
-        if (oh.getNextChange(date) > date) {
-            var minutes = Math.floor((oh.getNextChange(date) - date) / 1000 / 60);
-            var hours = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60);
-            var days = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60 / 24);
-
-            if (days <= 1) {
-                if (hours >= 1){
-                    markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${hours} hour${hours > 1 ? "s" : ""}`;
-                } else {
-                    if (minutes >= 1) {
-                        console.log(building.name, minutes);
-                        markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${minutes} minute${minutes > 1 ? "s" : ""}`;
-                    } else {
-                        markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in less than a minute`;
-                    }
-                }
-            } else {
-                markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${days} day${days > 1 ? "s" : ""}`;
-            }
-            markerListOpeningHoursHint.style.color = (state ? "red": "green" );
-            markerList.appendChild(markerListOpeningHoursHint);
+            markerListOpeningHours = L.DomUtil.create('li');
+            markerListOpeningHours.innerHTML = `Opening hours: ${building.opening_hours}`;
             
-        }
-        
-        // console.log(oh.getWarnings());
+            let oh = new opening_hours(building.opening_hours, null, { 'locale': locale });
+            const state = oh.getState(date)
+            
+            if (state) {
+                markerListOpeningHours.innerHTML += " (Open)";
+                markerListOpeningHours.style.color = "green";
+                hoursFlag = true;
+            } else {
+                markerListOpeningHours.innerHTML += " (Closed)";
+                markerListOpeningHours.style.color = "red";
+            }
+            
+            markerListOpeningHoursHint = L.DomUtil.create('li');
+            markerList.appendChild(markerListOpeningHours);
+
+            if (oh.getNextChange(date) > date) {
+                var minutes = Math.floor((oh.getNextChange(date) - date) / 1000 / 60);
+                var hours = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60);
+                var days = Math.floor((oh.getNextChange(date) - date) / 1000 / 60 / 60 / 24);
+
+                if (days <= 1) {
+                    if (hours >= 1){
+                        markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${hours} hour${hours > 1 ? "s" : ""}`;
+                    } else {
+                        if (minutes >= 1) {
+                            console.log(building.name, minutes);
+                            markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${minutes} minute${minutes > 1 ? "s" : ""}`;
+                        } else {
+                            markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in less than a minute`;
+                        }
+                    }
+                } else {
+                    markerListOpeningHoursHint.innerHTML = `${state ? "Closing" : "Opening"} in ${days} day${days > 1 ? "s" : ""}`;
+                }
+                markerListOpeningHoursHint.style.color = (state ? "red": "green" );
+                markerList.appendChild(markerListOpeningHoursHint);
+                
+            }
+            
+            // console.log(oh.getWarnings());
         
         }
 
@@ -237,28 +238,34 @@ for (let campus in spaces) {
         markerList.appendChild(markerListCafe);
         }
 
+        if (building.usbc) {
+            markerListUSBC = L.DomUtil.create('li');
+            markerListUSBC.innerHTML = `Has USB-C ports in chargers`;
+            markerList.appendChild(markerListUSBC);
+        }
+
         if (building.vending_machines) {
-        markerListVending = L.DomUtil.create('li');
-        markerListVending.innerHTML = `Has vending machines`;
-        markerList.appendChild(markerListVending);
+            markerListVending = L.DomUtil.create('li');
+            markerListVending.innerHTML = `Has vending machines`;
+            markerList.appendChild(markerListVending);
         }
 
         if (building.computers) {
-        markerListComputers = L.DomUtil.create('li');
-        markerListComputers.innerHTML = `Has computers`;
-        markerList.appendChild(markerListComputers);
+            markerListComputers = L.DomUtil.create('li');
+            markerListComputers.innerHTML = `Has computers`;
+            markerList.appendChild(markerListComputers);
         }
 
         if (building.quiet) {
-        markerListQuiet = L.DomUtil.create('li');
-        markerListQuiet.innerHTML = `Has quiet study`;
-        markerList.appendChild(markerListQuiet);
+            markerListQuiet = L.DomUtil.create('li');
+            markerListQuiet.innerHTML = `Has quiet study`;
+            markerList.appendChild(markerListQuiet);
         }
 
         if (building.group) {
-        markerListGroup = L.DomUtil.create('li');
-        markerListGroup.innerHTML = `Has group study`;
-        markerList.appendChild(markerListGroup);
+            markerListGroup = L.DomUtil.create('li');
+            markerListGroup.innerHTML = `Has group study`;
+            markerList.appendChild(markerListGroup);
         }
 
         markerPopup.appendChild(markerList);
@@ -267,9 +274,9 @@ for (let campus in spaces) {
         marker.bindPopup(markerPopup);
         
         if (hoursFlag) {
-        marker.addTo(openStudySpaces);
+            marker.addTo(openStudySpaces);
         } else {
-        marker.addTo(closedStudySpaces);
+            marker.addTo(closedStudySpaces);
         }
         
     }
