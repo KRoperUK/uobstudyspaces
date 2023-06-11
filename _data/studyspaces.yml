@@ -9,7 +9,7 @@
     vending_machines: true
     adjustable_desks: true
     usbc: true
-    opening_hours: "Mo-Su 00:00-24:00"
+    opening_hours: "Mo-Su 00:00-24:00; 2023 Jun 10 - 2023 Aug 27: Mo-Fr 08:00-20:00; 2023 Jun 10 - 2023 Aug 27: Sa-Su 08:00-20:00"
     quiet: true
     group: true
   - name: "52 Pritchatts Road - Quiet Study Zone"
